@@ -1,0 +1,24 @@
+# Mastra Conditional Workflow
+
+## Background
+Mastra is a high-performance TypeScript AI agent framework. Workflows let you define complex sequences of tasks using clear, structured steps rather than relying on the reasoning of a single agent. The `.branch()` method creates conditional branches between workflow steps, allowing for different paths to be taken based on the result of a previous step.
+
+## Requirements
+- You have an initialized Node.js project at `/home/user/project` with `@mastra/core` and `zod` installed.
+- Create a workflow file `src/workflow.ts` that implements a conditional branch using `.branch()`.
+- Create a script `src/index.ts` that executes the workflow twice with different inputs and saves the results to `/home/user/project/output.json`.
+
+## Implementation Guide
+1. In `src/workflow.ts`, import `createStep` and `createWorkflow` from `@mastra/core/workflows`, and `z` from `zod`.
+2. Create an initial step (`step1`) that takes an `inputSchema` of `{ value: z.number() }` and returns the same value.
+3. Create a `highValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"High value: <value>"`.
+4. Create a `lowValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"Low value: <value>"`.
+5. Create a `finalStep` that takes the output of either branch (`'high-value-step'` or `'low-value-step'` output structure) and returns `{ message: z.string() }` containing the result string.
+6. Combine these into a workflow exported as `myWorkflow`. Use `.then(step1)`, then `.branch()` to route to `highValueStep` if `value > 10` and `lowValueStep` if `value <= 10`, and finally `.then(finalStep)` and `.commit()`.
+7. In `src/index.ts`, import the workflow, create a run, and execute it twice: once with `{ value: 15 }` and once with `{ value: 5 }`.
+8. Save the results of both runs as an array of objects `[ { message: "High value: 15" }, { message: "Low value: 5" } ]` to `output.json` in the project root.
+
+## Constraints
+- Project path: `/home/user/project`
+- Log file: `/home/user/project/output.json`
+- Start command: `npx tsx src/index.ts`
