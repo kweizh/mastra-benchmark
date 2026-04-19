@@ -1,5 +1,5 @@
 {
   "title": "Mastra Benchmark",
-  "description": "Performance results of AI coding models on Mastra tasks, measuring success rate and execution time with high precision.",
+  "description": "Performance results of AI coding models on Mastra.ai tasks, measuring success rate and execution time with high precision.",
   "github_repo": "https://github.com/kweizh/mastra-benchmark"
 }
