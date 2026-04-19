@@ -1,0 +1,65 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 1,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776610961.8766084,
+            "stop": 1776610963.9637141
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_uses_branch",
+                "status": "passed",
+                "duration": 0.0006084820197429508,
+                "start": 1776610961.8905761,
+                "stop": 1776610961.89142,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 2.052200386999175,
+                "start": 1776610961.8916316,
+                "stop": 1776610963.9588764,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_execution():\n        \"\"\"Run the script to generate output.json.\"\"\"\n        result = subprocess.run(\n            [\"npx\", \"tsx\", \"src/index.ts\"],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True\n        )\n>       assert result.returncode == 0, f\"Script execution failed: {result.stderr}\"\nE       AssertionError: Script execution failed: /home/user/project/node_modules/@mastra/core/dist/chunk-EPX67KDK.cjs:10827\nE               steps: steps.map(([_cond, step]) => ({ type: \"step\", step })),\nE                            ^\nE         \nE         TypeError: steps.map is not a function\nE             at Workflow.branch (/home/user/project/node_modules/@mastra/core/dist/chunk-EPX67KDK.cjs:10827:20)\nE             at <anonymous> (/home/user/project/src/workflow.ts:68:4)\nE             at Object.<anonymous> (/home/user/project/src/workflow.ts:77:11)\nE             at Module._compile (node:internal/modules/cjs/loader:1812:14)\nE             at Object.transformer (/home/user/project/node_modules/tsx/dist/register-D46fvsV_.cjs:3:1104)\nE             at Module.load (node:internal/modules/cjs/loader:1533:32)\nE             at Module._load (node:internal/modules/cjs/loader:1335:12)\nE             at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\nE             at Module.require (node:internal/modules/cjs/loader:1556:12)\nE             at require (node:internal/modules/helpers:152:16)\nE         \nE         Node.js v24.14.1\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['npx', 'tsx', 'src/index.ts'], returncode=1, stdout='', stderr='/home/user/project/node_modules...ode:internal/modules/cjs/loader:1556:12)\\n    at require (node:internal/modules/helpers:152:16)\\n\\nNode.js v24.14.1\\n').returncode\n\ntests/test_final_state.py:25: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_output_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000546508003026247,
+                "start": 1776610963.9590914,
+                "stop": 1776610963.9614122,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_output_file_exists():\n        \"\"\"Verify that output.json exists.\"\"\"\n>       assert os.path.isfile(OUTPUT_FILE), f\"File {OUTPUT_FILE} does not exist.\"\nE       AssertionError: File /home/user/project/output.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x70178b448220>('/home/user/project/output.json')\nE        +    where <function isfile at 0x70178b448220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:29: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_output_content",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0004167080332990736,
+                "start": 1776610963.9615989,
+                "stop": 1776610963.9635553,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_output_content():\n        \"\"\"Read output.json and verify its contents match the expected output.\"\"\"\n>       with open(OUTPUT_FILE, \"r\") as f:\n             ^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/project/output.json'\n\ntests/test_final_state.py:33: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

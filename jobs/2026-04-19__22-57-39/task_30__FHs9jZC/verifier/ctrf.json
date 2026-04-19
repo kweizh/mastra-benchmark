@@ -1,0 +1,56 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776611503.8333063,
+            "stop": 1776611503.8676567
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_dependencies_installed",
+                "status": "passed",
+                "duration": 0.0008378460188396275,
+                "start": 1776611503.8625355,
+                "stop": 1776611503.8636818,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_vector_db_exists_and_valid",
+                "status": "passed",
+                "duration": 0.0013409020029939711,
+                "start": 1776611503.8639605,
+                "stop": 1776611503.8655286,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_ask_script_exists",
+                "status": "passed",
+                "duration": 0.0005308290128596127,
+                "start": 1776611503.8658056,
+                "stop": 1776611503.8665178,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_answer_file_exists_and_contains_relevant_text",
+                "status": "passed",
+                "duration": 0.0005468400195240974,
+                "start": 1776611503.8667483,
+                "stop": 1776611503.8674526,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

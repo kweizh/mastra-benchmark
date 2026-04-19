@@ -1,0 +1,50 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 2,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776610999.2400026,
+            "stop": 1776611004.4659998
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_initialized",
+                "status": "passed",
+                "duration": 0.0006076239806134254,
+                "start": 1776610999.251772,
+                "stop": 1776610999.252592,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_index_ts_exists_and_uses_rag",
+                "status": "passed",
+                "duration": 0.00044094797340221703,
+                "start": 1776610999.2527845,
+                "stop": 1776610999.2533593,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution_and_output",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 5.196620784001425,
+                "start": 1776610999.2535303,
+                "stop": 1776611004.4658217,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_execution_and_output():\n        # Run the script to ensure it works\n        result = subprocess.run(\n            [\"npx\", \"tsx\", \"index.ts\"],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True\n        )\n        assert result.returncode == 0, f\"Script execution failed: {result.stderr}\"\n    \n        output_log = os.path.join(PROJECT_DIR, \"output.log\")\n        assert os.path.isfile(output_log), \"output.log not found.\"\n    \n        with open(output_log, \"r\") as f:\n            log_content = f.read().lower()\n    \n>       assert \"plumbus\" in log_content or \"dinglebop\" in log_content or \"shleem\" in log_content, \\\n            f\"output.log does not contain expected information about a Plumbus. Content: {log_content}\"\nE       AssertionError: output.log does not contain expected information about a Plumbus. Content: the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.\nE       assert ('plumbus' in 'the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.' or 'dinglebop' in 'the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.' or 'shleem' in 'the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.')\n\ntests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

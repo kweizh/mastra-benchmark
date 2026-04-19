@@ -1,0 +1,56 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 168ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+tests/test_final_state.py .F                                             [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_output_json_structure __________________________
+
+    def test_output_json_structure():
+        with open(OUTPUT_FILE, "r") as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                pytest.fail("output.json does not contain valid JSON.")
+    
+        assert isinstance(data, list), f"Expected output.json to contain a JSON array, got {type(data)}."
+        assert len(data) == 2, f"Expected array of length 2, got {len(data)}."
+    
+        alice_result = data[0]
+        bob_result = data[1]
+    
+        # The output from a workflow run is the `.result` object, which has the outputSchema
+        # If the workflow branches, the result might look like { askAboutSpecialty: { question: "..." } }
+    
+        alice_str = json.dumps(alice_result).lower()
+        bob_str = json.dumps(bob_result).lower()
+    
+        # Check if Alice's result indicates technical branch
+>       assert "specialty" in alice_str or "askaboutspecialty" in alice_str, \
+            f"Expected first item to contain output from 'askAboutSpecialty' branch, got: {alice_result}"
+E       AssertionError: Expected first item to contain output from 'askAboutSpecialty' branch, got: {'status': 'failed', 'steps': {'input': {'resumeText': 'Alice is a Software Engineer with 10 years of experience in React and Node.js.'}, 'gatherCandidateInfo': {'startedAt': 1776611655282, 'status': 'failed', 'error': {'message': '[Agent:Recruiter Agent] - Failed to resolve model configuration', 'domain': 'AGENT', 'category': 'USER', 'code': 'AGENT_GET_MODEL_MISSING_MODEL_INSTANCE', 'details': {'agentName': 'Recruiter Agent', 'originalError': 'Invalid model configuration provided'}}, 'endedAt': 1776611655286}}, 'input': {'resumeText': 'Alice is a Software Engineer with 10 years of experience in React and Node.js.'}, 'stepExecutionPath': ['gatherCandidateInfo'], 'error': {'message': '[Agent:Recruiter Agent] - Failed to resolve model configuration', 'domain': 'AGENT', 'category': 'USER', 'code': 'AGENT_GET_MODEL_MISSING_MODEL_INSTANCE', 'details': {'agentName': 'Recruiter Agent', 'originalError': 'Invalid model configuration provided'}}}
+E       assert ('specialty' in '{"status": "failed", "steps": {"input": {"resumetext": "alice is a software engineer with 10 years of experience in r...odel_instance", "details": {"agentname": "recruiter agent", "originalerror": "invalid model configuration provided"}}}' or 'askaboutspecialty' in '{"status": "failed", "steps": {"input": {"resumetext": "alice is a software engineer with 10 years of experience in r...odel_instance", "details": {"agentname": "recruiter agent", "originalerror": "invalid model configuration provided"}}}')
+
+tests/test_final_state.py:52: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_output_file_exists
+FAILED tests/test_final_state.py::test_output_json_structure - AssertionError...
+========================= 1 failed, 1 passed in 1.54s ==========================

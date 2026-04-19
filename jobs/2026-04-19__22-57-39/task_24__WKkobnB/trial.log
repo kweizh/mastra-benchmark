@@ -1,0 +1,78 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s pochi-v0.6.7 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.5": {
+          "name": "kimi-K2.5"
+        },
+        "Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+          "name": "qwen3-coder-480b"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Mastra Conditional Workflow
+
+## Background
+Mastra is a high-performance TypeScript AI agent framework. Workflows let you define complex sequences of tasks using clear, structured steps rather than relying on the reasoning of a single agent. The `.branch()` method creates conditional branches between workflow steps, allowing for different paths to be taken based on the result of a previous step.
+
+## Requirements
+- You have an initialized Node.js project at `/home/user/project` with `@mastra/core` and `zod` installed.
+- Create a workflow file `src/workflow.ts` that implements a conditional branch using `.branch()`.
+- Create a script `src/index.ts` that executes the workflow twice with different inputs and saves the results to `/home/user/project/output.json`.
+
+## Implementation Guide
+1. In `src/workflow.ts`, import `createStep` and `createWorkflow` from `@mastra/core/workflows`, and `z` from `zod`.
+2. Create an initial step (`step1`) that takes an `inputSchema` of `{ value: z.number() }` and returns the same value.
+3. Create a `highValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"High value: <value>"`.
+4. Create a `lowValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"Low value: <value>"`.
+5. Create a `finalStep` that takes the output of either branch (`'high-value-step'` or `'low-value-step'` output structure) and returns `{ message: z.string() }` containing the result string.
+6. Combine these into a workflow exported as `myWorkflow`. Use `.then(step1)`, then `.branch()` to route to `highValueStep` if `value > 10` and `lowValueStep` if `value <= 10`, and finally `.then(finalStep)` and `.commit()`.
+7. In `src/index.ts`, import the workflow, create a run, and execute it twice: once with `{ value: 15 }` and once with `{ value: 5 }`.
+8. Save the results of both runs as an array of objects `[ { message: "High value: 15" }, { message: "Low value: 5" } ]` to `output.json` in the project root.
+
+## Constraints
+- Project path: `/home/user/project`
+- Log file: `/home/user/project/output.json`
+- Start command: `npx tsx src/index.ts`
+EOF
+Command failed
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

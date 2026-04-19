@@ -1,0 +1,59 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 3,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776611622.3906312,
+            "stop": 1776611626.759137
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_directory_exists",
+                "status": "passed",
+                "duration": 0.0005171060038264841,
+                "start": 1776611622.4018474,
+                "stop": 1776611622.40265,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_index_file_contains_models",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0006791890191379935,
+                "start": 1776611622.402848,
+                "stop": 1776611622.4178865,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_index_file_contains_models():\n        # Check if either index.ts or index.js exists\n        target_file = None\n        if os.path.isfile(INDEX_FILE):\n            target_file = INDEX_FILE\n        elif os.path.isfile(INDEX_JS_FILE):\n            target_file = INDEX_JS_FILE\n    \n        assert target_file is not None, \"Neither index.ts nor index.js found in the project directory.\"\n    \n        with open(target_file, \"r\") as f:\n            content = f.read()\n    \n>       assert \"openai/gpt-4o\" in content, \"Model 'openai/gpt-4o' not found in the script.\"\nE       AssertionError: Model 'openai/gpt-4o' not found in the script.\nE       assert 'openai/gpt-4o' in \"import { Mastra } from '@mastra/core';\\nimport { Agent } from '@mastra/core/agent';\\nimport { openai } from '@ai-sdk/...e}\\\\n`;\\n  \\n  fs.writeFileSync(logPath, logContent);\\n  console.log(`Responses saved to ${logPath}`);\\n}\\n\\nmain();\\n\"\n\ntests/test_final_state.py:26: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution",
+                "status": "passed",
+                "duration": 4.3397172409750056,
+                "start": 1776611622.4180853,
+                "stop": 1776611626.758005,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_exists_and_contains_responses",
+                "status": "passed",
+                "duration": 0.0005208590009715408,
+                "start": 1776611626.7583096,
+                "stop": 1776611626.7589655,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

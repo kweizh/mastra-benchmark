@@ -1,0 +1,41 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776610963.322425,
+            "stop": 1776610973.8963282
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_index_file_exists_and_contains_imports",
+                "status": "passed",
+                "duration": 0.0006213070009835064,
+                "start": 1776610963.3330421,
+                "stop": 1776610963.3338838,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution_and_log_output",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 10.547272066993173,
+                "start": 1776610963.3341136,
+                "stop": 1776610973.8961134,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_execution_and_log_output():\n        # Setup step: ensure npm install is run\n        install_result = subprocess.run(\n            [\"npm\", \"install\"],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True\n        )\n        assert install_result.returncode == 0, f\"'npm install' failed: {install_result.stderr}\"\n    \n        # Run the script\n        run_result = subprocess.run(\n            [\"npx\", \"tsx\", \"index.ts\"],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True\n        )\n        assert run_result.returncode == 0, f\"'npx tsx index.ts' failed: {run_result.stderr}\"\n    \n        # Verify log file exists\n        assert os.path.isfile(LOG_FILE), f\"output.log not found at {LOG_FILE}\"\n    \n        # Verify log content\n        with open(LOG_FILE, \"r\") as f:\n            log_content = f.read()\n>       assert \"105\" in log_content, f\"Expected '105' in output.log, got: {log_content}\"\nE       AssertionError: Expected '105' in output.log, got: \nE       assert '105' in ''\n\ntests/test_final_state.py:41: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 21ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+tests/test_final_state.py ..F                                            [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_script_execution_and_output _______________________
+
+    def test_script_execution_and_output():
+        # Run the script to ensure it works
+        result = subprocess.run(
+            ["npx", "tsx", "index.ts"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True
+        )
+        assert result.returncode == 0, f"Script execution failed: {result.stderr}"
+    
+        output_log = os.path.join(PROJECT_DIR, "output.log")
+        assert os.path.isfile(output_log), "output.log not found."
+    
+        with open(output_log, "r") as f:
+            log_content = f.read().lower()
+    
+>       assert "plumbus" in log_content or "dinglebop" in log_content or "shleem" in log_content, \
+            f"output.log does not contain expected information about a Plumbus. Content: {log_content}"
+E       AssertionError: output.log does not contain expected information about a Plumbus. Content: the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.
+E       assert ('plumbus' in 'the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.' or 'dinglebop' in 'the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.' or 'shleem' in 'the main topic of the document is the mastra framework and its capabilities for building ai-powered applications, particularly in relation to rag (retrieval-augmented generation) pipelines.')
+
+tests/test_final_state.py:39: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_project_initialized
+PASSED tests/test_final_state.py::test_index_ts_exists_and_uses_rag
+FAILED tests/test_final_state.py::test_script_execution_and_output - Assertio...
+========================= 1 failed, 2 passed in 5.23s ==========================

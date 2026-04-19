@@ -1,0 +1,93 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s pochi-v0.6.7 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.5": {
+          "name": "kimi-K2.5"
+        },
+        "Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+          "name": "qwen3-coder-480b"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Create a Weather Tool with Mastra
+
+## Background
+Mastra is a TypeScript AI agent framework. Tools are reusable functions that agents can call to interact with external systems or perform specific tasks. In this task, you will create a custom Mastra tool that fetches weather data.
+
+## Requirements
+- Initialize a Node.js project in `/home/user/project`.
+- Install `@mastra/core` and `zod`.
+- Create a file `index.ts` that exports a Mastra tool named `weatherTool`.
+- The tool must be created using `createTool` from `@mastra/core/tools`.
+- The tool's `id` must be `weather-tool`.
+- The `inputSchema` must use `zod` to require a `location` string.
+- The `execute` function must be an async function that takes an object containing `inputData` (which has `location`) and returns an object with a `weather` property containing the string `The weather in {location} is sunny.`.
+
+## Implementation Guide
+1. Run `mkdir -p /home/user/project` and `cd /home/user/project`.
+2. Run `npm init -y`.
+3. Run `npm install @mastra/core zod typescript @types/node tsx`.
+4. Create `index.ts` and define the tool:
+   ```typescript
+   import { createTool } from '@mastra/core/tools';
+   import { z } from 'zod';
+
+   export const weatherTool = createTool({
+     id: 'weather-tool',
+     description: 'Get the weather for a location',
+     inputSchema: z.object({
+       location: z.string()
+     }),
+     execute: async ({ inputData }) => {
+       return { weather: `The weather in ${inputData.location} is sunny.` };
+     }
+   });
+   ```
+
+## Constraints
+- Project path: `/home/user/project`
+- The file must be named `index.ts`.
+- The exported tool must be named `weatherTool`.
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

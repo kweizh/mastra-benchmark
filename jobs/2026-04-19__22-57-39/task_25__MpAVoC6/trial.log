@@ -1,0 +1,83 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash -x -s pochi-v0.6.7 && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.5": {
+          "name": "kimi-K2.5"
+        },
+        "Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+          "name": "qwen3-coder-480b"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Mastra Human-in-the-Loop Workflow
+
+## Background
+Mastra workflows can be paused at any step to wait for external input or approval (Human-in-the-loop). When a workflow is suspended, its current execution state is saved. You can later resume the workflow run, providing the required `resumeData`.
+
+## Requirements
+Create a Node.js project using Mastra that implements a Human-in-the-loop workflow.
+
+1. Initialize a Node.js project in `/home/user/mastra-app`.
+2. Install `@mastra/core`, `zod`, `typescript`, `tsx`, and `@types/node`.
+3. Create `workflow.ts` that defines and exports a workflow named `contentApprovalWorkflow`:
+   - Input schema: `{ content: z.string() }`
+   - Output schema: `{ result: z.string() }`
+   - It should have a step `reviewStep` that suspends execution if `resumeData` is not provided. To suspend, use `await suspend()`.
+   - `resumeSchema` should be `{ approved: z.boolean() }`.
+   - If resumed and `resumeData.approved` is true, the step output `result` should be `"Publish: " + content`.
+   - If `resumeData.approved` is false, `result` should be `"Discard: " + content`.
+   - The workflow output should match the step's output.
+4. Create `run.ts` that:
+   - Initializes a Mastra instance with `contentApprovalWorkflow`.
+   - Starts a run with input `{ content: "Hello World" }`.
+   - Checks if the run status is `"suspended"`.
+   - Resumes the run with `resumeData: { approved: true }`.
+   - Writes the final workflow result object (e.g., `{"result": "Publish: Hello World"}`) to `/home/user/mastra-app/output.json`.
+
+## Constraints
+- Project path: `/home/user/mastra-app`
+- Output file: `/home/user/mastra-app/output.json`
+- Start command: `npx tsx run.ts`
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

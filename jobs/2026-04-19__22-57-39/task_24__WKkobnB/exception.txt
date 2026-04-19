@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 538, in run
+    await self._execute_agent()
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 285, in _execute_agent
+    await asyncio.wait_for(
+  File "/opt/miniconda3/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 41, in wrapper
+    return await fn(self, instruction, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kw/code/zealt/pochi-harbor/agents/pochi.py", line 196, in run
+    await self.exec_as_agent(
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 358, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 321, in _exec
+    raise NonZeroAgentExitCodeError(
+harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 1): export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Mastra Conditional Workflow
+
+## Background
+Mastra is a high-performance TypeScript AI agent framework. Workflows let you define complex sequences of tasks using clear, structured steps rather than relying on the reasoning of a single agent. The `.branch()` method creates conditional branches between workflow steps, allowing for different paths to be taken based on the result of a previous step.
+
+## Requirements
+- You have an initialized Node.js project at `/home/user/project` with `@mastra/core` and `zod` installed.
+- Create a workflow file `src/workflow.ts` that implements a conditional branch using `.branch()`.
+- Create a script `src/index.ts` that executes the workflow twice with different inputs and saves the results to `/home/user/project/output.json`.
+
+## Implementation Guide
+1. In `src/workflow.ts`, import `createStep` and `createWorkflow` from `@mastra/core/workflows`, and `z` from `zod`.
+2. Create an initial step (`step1`) that takes an `inputSchema` of `{ value: z.number() }` and returns the same value.
+3. Create a `highValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"High value: <value>"`.
+4. Create a `lowValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"Low value: <value>"`.
+5. Create a `finalStep` that takes the output of either branch (`'high-value-step'` or `'low-value-step'` output structure) and returns `{ message: z.string() }` containing the result string.
+6. Combine these into a workflow exported as `myWorkflow`. Use `.then(step1)`, then `.branch()` to route to `highValueStep` if `value > 10` and `lowValueStep` if `value <= 10`, and finally `.then(finalStep)` and `.commit()`.
+7. In `src/index.ts`, import the workflow, create a run, and execute it twice: once with `{ value: 15 }` and once with `{ value: 5 }`.
+8. Save the results of both runs as an array of objects `[ { message: "High value: 15" }, { message: "Low value: 5" } ]` to `output.json` in the project root.
+
+## Constraints
+- Project path: `/home/user/project`
+- Log file: `/home/user/project/output.json`
+- Start command: `npx tsx src/index.ts`
+EOF
+stdout: [37m2026-04-19 14:58:18.619[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:1[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.7
+[37m2026-04-19 14:58:19.133[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503190[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 5 custom agents (5 valid, 0 invalid)
+[37m2026-04-19 14:58:19.137[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503191[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 2 skills (2 valid, 0 invalid)
+[37m2026-04-19 14:58:19.219[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:439415[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-04-19 14:58:23.418[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:415701[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-04-19 14:58:23.419[39m[0m[0m	[32m[1mDEBUG ... [truncated]
+stderr: None
