@@ -1,0 +1,349 @@
+1:"$Sreact.fragment"
+2:I[42654,["/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/ca023ad85cd7aeee.js","/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/2ad5122eae704b1a.js","/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/c0abab8b687eb150.js","/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/be08138953094657.js"],"TasksPageClient"]
+13:I[75049,["/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/d2c13bb33c4fcd54.js","/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+14:"$Sreact.suspense"
+3:T4e9,# Mastra Calculator Agent
+
+## Background
+Mastra provides a unified ecosystem for building AI agents with tools. In this task, you will create a simple Calculator Tool and attach it to an agent.
+
+## Requirements
+- Initialize a Node.js project in `/home/user/calculator-agent`.
+- Install `@mastra/core`, `zod`, and `tsx`.
+- Create a file `index.ts` that defines a `calculatorTool` using `createTool` from `@mastra/core`.
+- The tool should take an `inputSchema` with `a` (number), `b` (number), and `operation` (string: 'add', 'subtract', 'multiply', 'divide').
+- The `execute` function should perform the calculation and return `{ result: number }`.
+- Create an `Agent` using `@mastra/core/agent` with the `calculatorTool`.
+- Use the model `openai/gpt-4o-mini` (or similar) and instruct it to use the calculator tool to answer math questions.
+- The script should ask the agent "What is 15 multiplied by 7?" using `await agent.generate(...)`.
+- Write the resulting text output to `/home/user/calculator-agent/output.log`.
+
+## Constraints
+- Project path: `/home/user/calculator-agent`
+- Log file: `/home/user/calculator-agent/output.log`
+- You must use `createTool` and `Agent` from Mastra.
+- Set the `OPENAI_API_KEY` environment variable for the agent to work.4:T423,# Setup Mastra with LibSQL Storage
+
+## Background
+Mastra is an AI agent framework. You need to initialize a basic Mastra instance equipped with an agent and configure it to use LibSQL for memory storage.
+
+## Requirements
+- Initialize a Node.js project in `/home/user/myproject`.
+- Install `@mastra/core` and `@mastra/memory`.
+- Create an `index.js` file that sets up a Mastra instance.
+- The instance must include at least one agent (e.g., using `openai/gpt-4o` model).
+- Configure the agent with a `Memory` instance that uses a `LibSQLStore` pointing to `file:mastra.db`.
+
+## Implementation Guide
+1. `cd /home/user/myproject` and run `npm init -y`.
+2. Install the required dependencies: `npm install @mastra/core @mastra/memory`.
+3. Create `index.js` with the Mastra setup, Agent creation, Memory, and LibSQLStore.
+4. Ensure the script runs successfully with `node index.js` and creates the `mastra.db` file.
+
+## Constraints
+- Project path: /home/user/myproject
+- The database file must be created at `/home/user/myproject/mastra.db`.
+
+## Integrations
+- None5:T640,# Mastra RAG Pipeline
+
+## Background
+Build a Retrieval-Augmented Generation (RAG) pipeline using the Mastra framework. You will need to parse a provided markdown file, chunk the text, generate embeddings, and store them in a vector database to answer questions based on the document.
+
+## Requirements
+- Initialize a Mastra project in `/home/user/myproject`.
+- Install necessary dependencies (`@mastra/core`, `@mastra/rag`, etc.).
+- Create a script `index.ts` that:
+  1. Reads a markdown file `/home/user/myproject/data.md`.
+  2. Chunks the document using Mastra's RAG utilities.
+  3. Generates embeddings for the chunks using an OpenAI model (e.g., `text-embedding-3-small` or similar supported by Mastra).
+  4. Stores the embeddings in a local vector store (e.g., LibSQL or a simple in-memory store if supported, or PgLite).
+  5. Queries the vector store with a specific question: "What is the main topic of the document?"
+  6. Outputs the retrieved chunks or the final LLM answer to `/home/user/myproject/output.log`.
+
+## Implementation Guide
+1. Run `mkdir -p /home/user/myproject && cd /home/user/myproject`.
+2. Initialize a Node.js project: `npm init -y`.
+3. Install dependencies: `npm install @mastra/core @mastra/rag dotenv` and TypeScript types if needed.
+4. Write `index.ts` to implement the RAG pipeline.
+5. Execute the script using `npx tsx index.ts`.
+
+## Constraints
+- Project path: `/home/user/myproject`
+- Input file: `/home/user/myproject/data.md`
+- Log file: `/home/user/myproject/output.log`
+- You must use Mastra's RAG capabilities.
+
+## Integrations
+- OpenAI (for embeddings and LLM)6:T86f,# Mastra Conditional Workflow
+
+## Background
+Mastra is a high-performance TypeScript AI agent framework. Workflows let you define complex sequences of tasks using clear, structured steps rather than relying on the reasoning of a single agent. The `.branch()` method creates conditional branches between workflow steps, allowing for different paths to be taken based on the result of a previous step.
+
+## Requirements
+- You have an initialized Node.js project at `/home/user/project` with `@mastra/core` and `zod` installed.
+- Create a workflow file `src/workflow.ts` that implements a conditional branch using `.branch()`.
+- Create a script `src/index.ts` that executes the workflow twice with different inputs and saves the results to `/home/user/project/output.json`.
+
+## Implementation Guide
+1. In `src/workflow.ts`, import `createStep` and `createWorkflow` from `@mastra/core/workflows`, and `z` from `zod`.
+2. Create an initial step (`step1`) that takes an `inputSchema` of `{ value: z.number() }` and returns the same value.
+3. Create a `highValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"High value: <value>"`.
+4. Create a `lowValueStep` that takes `{ value: z.number() }` and returns `{ result: z.string() }` with the string `"Low value: <value>"`.
+5. Create a `finalStep` that takes the output of either branch (`'high-value-step'` or `'low-value-step'` output structure) and returns `{ message: z.string() }` containing the result string.
+6. Combine these into a workflow exported as `myWorkflow`. Use `.then(step1)`, then `.branch()` to route to `highValueStep` if `value > 10` and `lowValueStep` if `value <= 10`, and finally `.then(finalStep)` and `.commit()`.
+7. In `src/index.ts`, import the workflow, create a run, and execute it twice: once with `{ value: 15 }` and once with `{ value: 5 }`.
+8. Save the results of both runs as an array of objects `[ { message: "High value: 15" }, { message: "Low value: 5" } ]` to `output.json` in the project root.
+
+## Constraints
+- Project path: `/home/user/project`
+- Log file: `/home/user/project/output.json`
+- Start command: `npx tsx src/index.ts`7:T699,# Mastra Human-in-the-Loop Workflow
+
+## Background
+Mastra workflows can be paused at any step to wait for external input or approval (Human-in-the-loop). When a workflow is suspended, its current execution state is saved. You can later resume the workflow run, providing the required `resumeData`.
+
+## Requirements
+Create a Node.js project using Mastra that implements a Human-in-the-loop workflow.
+
+1. Initialize a Node.js project in `/home/user/mastra-app`.
+2. Install `@mastra/core`, `zod`, `typescript`, `tsx`, and `@types/node`.
+3. Create `workflow.ts` that defines and exports a workflow named `contentApprovalWorkflow`:
+   - Input schema: `{ content: z.string() }`
+   - Output schema: `{ result: z.string() }`
+   - It should have a step `reviewStep` that suspends execution if `resumeData` is not provided. To suspend, use `await suspend()`.
+   - `resumeSchema` should be `{ approved: z.boolean() }`.
+   - If resumed and `resumeData.approved` is true, the step output `result` should be `"Publish: " + content`.
+   - If `resumeData.approved` is false, `result` should be `"Discard: " + content`.
+   - The workflow output should match the step's output.
+4. Create `run.ts` that:
+   - Initializes a Mastra instance with `contentApprovalWorkflow`.
+   - Starts a run with input `{ content: "Hello World" }`.
+   - Checks if the run status is `"suspended"`.
+   - Resumes the run with `resumeData: { approved: true }`.
+   - Writes the final workflow result object (e.g., `{"result": "Publish: Hello World"}`) to `/home/user/mastra-app/output.json`.
+
+## Constraints
+- Project path: `/home/user/mastra-app`
+- Output file: `/home/user/mastra-app/output.json`
+- Start command: `npx tsx run.ts`8:T5d3,# Configure a Supervisor Agent to Coordinate Sub-Agents in Mastra
+
+## Background
+Mastra is a TypeScript AI agent framework. You need to configure a Supervisor agent that coordinates two sub-agents: a 'Coder' and a 'Reviewer', using shared memory.
+
+## Requirements
+- You have an empty directory at `/home/user/project`.
+- Initialize a Node.js project in `/home/user/project`.
+- Install `@mastra/core`, `@mastra/memory`, and `zod`.
+- Create a `src/index.ts` file that exports a `Mastra` instance.
+- Create three agents: `coder`, `reviewer`, and `supervisor`.
+- The `coder` agent should be configured with instructions to write TypeScript code.
+- The `reviewer` agent should be configured with instructions to review TypeScript code for security and performance.
+- The `supervisor` agent should have instructions to coordinate the `coder` and `reviewer` to complete a user request.
+- All three agents must share the same `Memory` instance to retain conversational context.
+- The `Mastra` instance must register all three agents.
+- Create a script `src/run.ts` that initializes the system, sends a request to the supervisor agent to "Write a simple Express server and review it", and writes the final output to `/home/user/project/output.txt`.
+
+## Constraints
+- Project path: `/home/user/project`
+- Log file: `/home/user/project/output.txt`
+- The models used should be `openai/gpt-4o-mini` (or similar, assuming `OPENAI_API_KEY` is provided).
+- Use `tsx` or `ts-node` to run the TypeScript file.9:T661,# Custom MCP Server for Local Filesystem with Mastra
+
+## Background
+Mastra supports connecting AI agents to external tools via the Model Context Protocol (MCP). You can use `MCPClient` from `@mastra/mcp` to connect to any MCP server and expose its tools to a Mastra `Agent`.
+
+## Requirements
+- You have an empty Node.js project in `/home/user/app` and an empty data directory at `/home/user/data`.
+- Configure an `MCPClient` to use the `@modelcontextprotocol/server-filesystem` npx package, allowing access to the `/home/user/data` directory.
+- Create a Mastra `Agent` that uses the filesystem tools provided by the MCP client.
+- Write an execution script `src/run.ts` that prompts the agent to create a file `hello.txt` containing "Hello from Mastra MCP" in the `/home/user/data` directory.
+
+## Implementation Guide
+1. In `/home/user/app`, install `@mastra/core`, `@mastra/mcp`, `@ai-sdk/openai`, and `tsx`.
+2. Create `src/mcp.ts` with the `MCPClient` configured for the `filesystem` server using `npx -y @modelcontextprotocol/server-filesystem /home/user/data`.
+3. Create `src/agent.ts` that exports a Mastra `Agent` configured with `openai("gpt-4o-mini")` and the tools from the MCP client (e.g., `tools: await mcp.getTools()`).
+4. Create `src/run.ts` that imports the agent and calls `agent.generate("Write 'Hello from Mastra MCP' to /home/user/data/hello.txt")`.
+5. Run the script and save the output to `/home/user/app/output.log`.
+
+## Constraints
+- Project path: `/home/user/app`
+- Log file: `/home/user/app/output.log`
+- Data directory: `/home/user/data`
+- Use `OPENAI_API_KEY` from the environment.
+
+## Integrations
+- OpenAIa:T759,# Mastra AI Recruiter Workflow
+
+## Background
+You need to build an AI recruiter workflow using Mastra. The workflow will parse a candidate's resume, determine if they are technical or non-technical, and generate a specific interview question based on their profile.
+
+## Requirements
+- Initialize a Node.js project at `/home/user/ai-recruiter`.
+- Install `@mastra/core` and `zod`.
+- Write a script `run.js` (or `run.ts` if you prefer, but ensure it can be run with `node` or `tsx`).
+- Create a Mastra Agent using the `openai/gpt-4o-mini` model with the instruction "You are an expert recruiter.".
+- Create a `gatherCandidateInfo` step that uses the Agent to parse `resumeText` and outputs `candidateName` (string), `isTechnical` (boolean), and `specialty` (string).
+- Create an `askAboutSpecialty` step that takes the output of the first step and generates a question about their specialty.
+- Create an `askAboutRole` step that takes the output of the first step and generates a question about what interests them in the role.
+- Create a Workflow that takes `{ resumeText: z.string() }` as input.
+- The workflow should start with `gatherCandidateInfo`, then use `.branch()` to conditionally route to `askAboutSpecialty` if `isTechnical` is true, or `askAboutRole` if `isTechnical` is false.
+- Execute the workflow for two candidates:
+  1. "Alice is a Software Engineer with 10 years of experience in React and Node.js."
+  2. "Bob is a Marketing Manager with 5 years of experience in SEO and content strategy."
+- Save the final workflow output (the `.result` object from both runs) as a JSON array to `/home/user/ai-recruiter/output.json`.
+
+## Constraints
+- Project path: `/home/user/ai-recruiter`
+- Output file: `/home/user/ai-recruiter/output.json`
+- Use `openai/gpt-4o-mini` for the agent model.
+- Ensure `OPENAI_API_KEY` is available in the environment.
+
+## Integrations
+- OpenAIb:T41b,# Mastra Chef Agent
+
+## Background
+Create a simple Mastra agent named 'chef-agent' that acts as a professional French chef.
+
+## Requirements
+- Initialize a Node.js project in `/home/user/project`.
+- Install `@mastra/core`.
+- Create an `index.ts` file that defines an Agent using `@mastra/core/agent`.
+- The agent ID must be `chef-agent`.
+- The agent model must be `openai/gpt-4o-mini`.
+- The agent instructions must be: `You are Michel, a professional French chef. You always suggest adding more butter.`
+- The script should generate a response for the prompt `How to make an omelette?` and save the text output to `/home/user/project/output.txt`.
+
+## Implementation
+1. `cd /home/user/project`
+2. `npm init -y`
+3. `npm install @mastra/core typescript tsx @types/node`
+4. Create `index.ts` with the agent definition and execution logic.
+5. Run the script using `npx tsx index.ts`.
+
+## Constraints
+- Project path: /home/user/project
+- Output file: /home/user/project/output.txt
+- You must use `openai/gpt-4o-mini` as the model.
+
+## Integrations
+- OpenAIc:T829,# Mastra Research Assistant (RAG)
+
+## Background
+You need to build an AI research assistant using Mastra's RAG capabilities. The assistant will process a local markdown file, generate embeddings, store them in a local libSQL database, and use a vector query tool to answer questions based on the document.
+
+## Requirements
+- Initialize a Node.js project for Mastra in `/home/user/research-assistant`.
+- Process the provided `/home/user/paper.md` file into chunks and generate embeddings using `openai/text-embedding-3-small`.
+- Store the embeddings in a `LibSQLVector` database located at `file:/home/user/research-assistant/vector.db` with the index name `papers`.
+- Create a Mastra agent named `Research Assistant` with ID `research-agent` using the `openai/gpt-4o-mini` model.
+- Equip the agent with a vector query tool connected to the `libSqlVector` store and `papers` index.
+- Create a script that queries the agent and saves the response to `/home/user/answer.txt`.
+
+## Implementation Guide
+1. Initialize the project in `/home/user/research-assistant` and install dependencies: `@mastra/core`, `@mastra/rag`, `@mastra/libsql`, `ai`, and `zod`.
+2. Create `src/store.ts` to read `/home/user/paper.md`, chunk it using `MDocument.fromText` (recursive strategy, maxSize 512, overlap 50), generate embeddings, and upsert them into `LibSQLVector` (`vector.db`).
+3. Create `src/mastra/agents/researchAgent.ts` to define the agent with the vector query tool.
+4. Create `src/mastra/index.ts` to configure and export the Mastra instance with the agent and vector store.
+5. Run the `src/store.ts` script to populate the vector database.
+6. Create and run `src/ask.ts` to query the agent with: "What are the main advantages of the Transformer architecture?" and write the generated text to `/home/user/answer.txt`.
+
+## Constraints
+- Project path: `/home/user/research-assistant`
+- Log file: `/home/user/answer.txt`
+- The database must be created at `/home/user/research-assistant/vector.db`.
+- Ensure you use `openai/text-embedding-3-small` for embeddings and `openai/gpt-4o-mini` for the agent.d:T67a,# Create a Weather Tool with Mastra
+
+## Background
+Mastra is a TypeScript AI agent framework. Tools are reusable functions that agents can call to interact with external systems or perform specific tasks. In this task, you will create a custom Mastra tool that fetches weather data.
+
+## Requirements
+- Initialize a Node.js project in `/home/user/project`.
+- Install `@mastra/core` and `zod`.
+- Create a file `index.ts` that exports a Mastra tool named `weatherTool`.
+- The tool must be created using `createTool` from `@mastra/core/tools`.
+- The tool's `id` must be `weather-tool`.
+- The `inputSchema` must use `zod` to require a `location` string.
+- The `execute` function must be an async function that takes an object containing `inputData` (which has `location`) and returns an object with a `weather` property containing the string `The weather in {location} is sunny.`.
+
+## Implementation Guide
+1. Run `mkdir -p /home/user/project` and `cd /home/user/project`.
+2. Run `npm init -y`.
+3. Run `npm install @mastra/core zod typescript @types/node tsx`.
+4. Create `index.ts` and define the tool:
+   ```typescript
+   import { createTool } from '@mastra/core/tools';
+   import { z } from 'zod';
+
+   export const weatherTool = createTool({
+     id: 'weather-tool',
+     description: 'Get the weather for a location',
+     inputSchema: z.object({
+       location: z.string()
+     }),
+     execute: async ({ inputData }) => {
+       return { weather: `The weather in ${inputData.location} is sunny.` };
+     }
+   });
+   ```
+
+## Constraints
+- Project path: `/home/user/project`
+- The file must be named `index.ts`.
+- The exported tool must be named `weatherTool`.e:T608,# Multi-Model Mastra Agents
+
+## Background
+Mastra allows creating agents that use different LLM providers via the Vercel AI SDK. This task requires setting up a Mastra instance with two agents, one using OpenAI and the other using Anthropic.
+
+## Requirements
+- Initialize a Node.js project and install Mastra dependencies.
+- Create a Mastra instance with two agents:
+  1. `openai-agent` using `openai/gpt-4o` with instructions "You are an OpenAI assistant."
+  2. `anthropic-agent` using `anthropic/claude-3-5-sonnet-20240620` with instructions "You are an Anthropic assistant."
+- Write a script to instantiate the Mastra instance, prompt both agents with "Say hello", and save their responses to a log file.
+
+## Implementation Guide
+1. Create a project directory at `/home/user/mastra-multi-model` and initialize it with `npm init -y`.
+2. Install required dependencies: `npm install @mastra/core @mastra/memory zod dotenv`.
+3. Create `index.ts` (or `.js`) that configures a `Mastra` instance with the two agents.
+4. Ensure the script reads `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` from the environment.
+5. The script should call `generate('Say hello')` on both agents.
+6. Write the output of both agents to `/home/user/mastra-multi-model/output.log`.
+
+## Constraints
+- Project path: `/home/user/mastra-multi-model`
+- Log file: `/home/user/mastra-multi-model/output.log`
+- You must use `@mastra/core` and `@mastra/core/agent` to define the agents.
+- You can run the script via `npx tsx index.ts` or similar.
+
+## Integrations
+- OpenAI
+- Anthropicf:T5be,# Mastra Workflow Error Handling and Retries
+
+## Background
+Mastra workflows support error handling and retries for transient failures. In this task, you will create a workflow that retries a failing step and handles the final result.
+
+## Requirements
+- Initialize a Node.js project with TypeScript.
+- Install `@mastra/core`, `zod`, `typescript`, `tsx`, and `@types/node`.
+- Create a step `unstableStep` that reads a number from `/home/user/project/attempts.txt` (defaulting to 0 if the file is empty or missing), increments it, and writes it back. If the number is less than 3, it throws an error. If it is 3 or greater, it returns `{ status: "success" }`.
+- Create a workflow `retryWorkflow` that executes `unstableStep`. Configure the workflow with `retryConfig: { attempts: 5, delay: 100 }` so it retries the step upon failure.
+- Create an `index.ts` script that:
+  1. Writes `0` to `/home/user/project/attempts.txt`.
+  2. Executes the workflow.
+  3. Writes the stringified workflow result to `/home/user/project/result.json`.
+
+## Implementation Guide
+1. Initialize project in `/home/user/project` and install dependencies.
+2. Create `index.ts` with the step and workflow definitions.
+3. Use `fs` to read/write `attempts.txt`.
+4. Run the workflow using `const run = await retryWorkflow.createRun(); await run.start();`.
+
+## Constraints
+- Project path: `/home/user/project`
+- Log file: `/home/user/project/result.json`
+- Use `@mastra/core` version `0.1.34` or latest.0:{"buildId":"2pLlcdvCVHChPiB6bC_1q","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$L2",null,{"tasksData":[{"taskName":"task_21","instruction":"$3","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_21__CdpH4d3","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":171.164,"latency_breakdown":{"env_setup":1.878,"agent_setup":12.437,"agent_exec":143.386,"verifier":2.949},"taskName":"task_21","jobId":"CdpH4d3","exec_duration":143.386},{"job_name":"2026-04-23__12-58-38","trial_name":"task_21__6fTEXiw","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":535.96,"latency_breakdown":{"env_setup":2.097,"agent_setup":67.852,"agent_exec":436.894,"verifier":18.58},"taskName":"task_21","jobId":"6fTEXiw","exec_duration":436.894},{"job_name":"2026-04-22__14-24-12","trial_name":"task_21__5CfVtsb","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":184.297,"latency_breakdown":{"env_setup":2.034,"agent_setup":20.41,"agent_exec":144.187,"verifier":7.162},"taskName":"task_21","jobId":"5CfVtsb","exec_duration":144.187},{"job_name":"2026-04-19__22-57-39","trial_name":"task_21__w3AyjPd","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":325.006,"latency_breakdown":{"env_setup":12.349,"agent_setup":29.198,"agent_exec":246.099,"verifier":22.219},"taskName":"task_21","jobId":"w3AyjPd","exec_duration":246.099}]},{"taskName":"task_22","instruction":"$4","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_22__9eLYrH7","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":264.023,"latency_breakdown":{"env_setup":7.367,"agent_setup":19.451,"agent_exec":223.16,"verifier":3.455},"taskName":"task_22","jobId":"9eLYrH7","exec_duration":223.16},{"job_name":"2026-04-23__12-58-38","trial_name":"task_22__wR7g5cj","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":429.421,"latency_breakdown":{"env_setup":18.5,"agent_setup":85.419,"agent_exec":305.324,"verifier":9.673},"taskName":"task_22","jobId":"wR7g5cj","exec_duration":305.324},{"job_name":"2026-04-22__14-24-12","trial_name":"task_22__7Li5Pgv","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":278.243,"latency_breakdown":{"env_setup":12.009,"agent_setup":39.389,"agent_exec":210.645,"verifier":5.628},"taskName":"task_22","jobId":"7Li5Pgv","exec_duration":210.645},{"job_name":"2026-04-19__22-57-39","trial_name":"task_22__TEVxqQq","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":451.46,"latency_breakdown":{"env_setup":12.39,"agent_setup":28.196,"agent_exec":377.312,"verifier":14.926},"taskName":"task_22","jobId":"TEVxqQq","exec_duration":377.312}]},{"taskName":"task_23","instruction":"$5","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_23__AvEi3ny","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":322.428,"latency_breakdown":{"env_setup":2.252,"agent_setup":16.182,"agent_exec":289.798,"verifier":3.692},"taskName":"task_23","jobId":"AvEi3ny","exec_duration":289.798},{"job_name":"2026-04-23__12-58-38","trial_name":"task_23__foXfmvz","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":723.418,"latency_breakdown":{"env_setup":1.598,"agent_setup":103.487,"agent_exec":600.056,"verifier":7.159},"taskName":"task_23","jobId":"foXfmvz","exec_duration":600.056},{"job_name":"2026-04-22__14-24-12","trial_name":"task_23__pJNgMcd","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":387.878,"latency_breakdown":{"env_setup":11.866,"agent_setup":35.483,"agent_exec":322.306,"verifier":7.402},"taskName":"task_23","jobId":"pJNgMcd","exec_duration":322.306},{"job_name":"2026-04-19__22-57-39","trial_name":"task_23__XWm9cK3","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":357.524,"latency_breakdown":{"env_setup":12.048,"agent_setup":44.282,"agent_exec":270.299,"verifier":13.791},"taskName":"task_23","jobId":"XWm9cK3","exec_duration":270.299}]},{"taskName":"task_24","instruction":"$6","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_24__YaN9QMf","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":103.895,"latency_breakdown":{"env_setup":3.242,"agent_setup":12.806,"agent_exec":71.242,"verifier":6.065},"taskName":"task_24","jobId":"YaN9QMf","exec_duration":71.242},{"job_name":"2026-04-23__12-58-38","trial_name":"task_24__kevQeKP","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":336.067,"latency_breakdown":{"env_setup":3.658,"agent_setup":75.846,"agent_exec":239.112,"verifier":6.933},"taskName":"task_24","jobId":"kevQeKP","exec_duration":239.112},{"job_name":"2026-04-22__14-24-12","trial_name":"task_24__ygknspV","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":158.53,"latency_breakdown":{"env_setup":12.835,"agent_setup":40.271,"agent_exec":91.062,"verifier":3.577},"taskName":"task_24","jobId":"ygknspV","exec_duration":91.062},{"job_name":"2026-04-19__22-57-39","trial_name":"task_24__WKkobnB","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":315.297,"latency_breakdown":{"env_setup":12.471,"agent_setup":20.445,"agent_exec":258.183,"verifier":8.729},"taskName":"task_24","jobId":"WKkobnB","exec_duration":258.183}]},{"taskName":"task_25","instruction":"$7","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_25__msA92oj","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":241.927,"latency_breakdown":{"env_setup":7.354,"agent_setup":24.011,"agent_exec":197.304,"verifier":2.68},"taskName":"task_25","jobId":"msA92oj","exec_duration":197.304},{"job_name":"2026-04-23__12-58-38","trial_name":"task_25__M3QFqRN","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":526.174,"latency_breakdown":{"env_setup":18.394,"agent_setup":106.136,"agent_exec":384.355,"verifier":5.737},"taskName":"task_25","jobId":"M3QFqRN","exec_duration":384.355},{"job_name":"2026-04-22__14-24-12","trial_name":"task_25__JYRi9o2","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":233.019,"latency_breakdown":{"env_setup":11.85,"agent_setup":40.512,"agent_exec":165.907,"verifier":4.282},"taskName":"task_25","jobId":"JYRi9o2","exec_duration":165.907},{"job_name":"2026-04-19__22-57-39","trial_name":"task_25__MpAVoC6","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":518.58,"latency_breakdown":{"env_setup":12.081,"agent_setup":20.805,"agent_exec":462.699,"verifier":8.382},"taskName":"task_25","jobId":"MpAVoC6","exec_duration":462.699}]},{"taskName":"task_26","instruction":"$8","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_26__Fh9BQar","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":199.079,"latency_breakdown":{"env_setup":1.717,"agent_setup":9.282,"agent_exec":175.666,"verifier":1.891},"taskName":"task_26","jobId":"Fh9BQar","exec_duration":175.666},{"job_name":"2026-04-23__12-58-38","trial_name":"task_26__82hNDuq","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":290.742,"latency_breakdown":{"env_setup":2.15,"agent_setup":25.412,"agent_exec":247.067,"verifier":4.387},"taskName":"task_26","jobId":"82hNDuq","exec_duration":247.067},{"job_name":"2026-04-22__14-24-12","trial_name":"task_26__yVNiJZf","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":359.316,"latency_breakdown":{"env_setup":1.747,"agent_setup":12.499,"agent_exec":331.964,"verifier":2.488},"taskName":"task_26","jobId":"yVNiJZf","exec_duration":331.964},{"job_name":"2026-04-19__22-57-39","trial_name":"task_26__YktJhfv","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":440.823,"latency_breakdown":{"env_setup":3.742,"agent_setup":48.115,"agent_exec":360.102,"verifier":8.238},"taskName":"task_26","jobId":"YktJhfv","exec_duration":360.102}]},{"taskName":"task_27","instruction":"$9","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_27__ePa9aG3","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":469.117,"latency_breakdown":{"env_setup":1.718,"agent_setup":12.434,"agent_exec":442.227,"verifier":2.098},"taskName":"task_27","jobId":"ePa9aG3","exec_duration":442.227},{"job_name":"2026-04-23__12-58-38","trial_name":"task_27__bcgvYr9","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":478.125,"latency_breakdown":{"env_setup":2.371,"agent_setup":61.67,"agent_exec":385.85,"verifier":17.598},"taskName":"task_27","jobId":"bcgvYr9","exec_duration":385.85},{"job_name":"2026-04-22__14-24-12","trial_name":"task_27__ACyV5wW","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":188.029,"latency_breakdown":{"env_setup":1.601,"agent_setup":19.615,"agent_exec":153.768,"verifier":2.61},"taskName":"task_27","jobId":"ACyV5wW","exec_duration":153.768},{"job_name":"2026-04-19__22-57-39","trial_name":"task_27__ndot4S3","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":433.291,"latency_breakdown":{"env_setup":4.109,"agent_setup":22.341,"agent_exec":381.342,"verifier":9.492},"taskName":"task_27","jobId":"ndot4S3","exec_duration":381.342}]},{"taskName":"task_28","instruction":"$a","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_28__odAzGHM","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":421.535,"latency_breakdown":{"env_setup":1.797,"agent_setup":9.483,"agent_exec":391.086,"verifier":8.711},"taskName":"task_28","jobId":"odAzGHM","exec_duration":391.086},{"job_name":"2026-04-23__12-58-38","trial_name":"task_28__z5sAqTS","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":630.811,"latency_breakdown":{"env_setup":1.975,"agent_setup":83.231,"agent_exec":518.019,"verifier":16.318},"taskName":"task_28","jobId":"z5sAqTS","exec_duration":518.019},{"job_name":"2026-04-22__14-24-12","trial_name":"task_28__LwmSXqe","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":219.807,"latency_breakdown":{"env_setup":2.086,"agent_setup":16.382,"agent_exec":182.775,"verifier":8.083},"taskName":"task_28","jobId":"LwmSXqe","exec_duration":182.775},{"job_name":"2026-04-19__22-57-39","trial_name":"task_28__f8v6suz","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":650.463,"latency_breakdown":{"env_setup":4.786,"agent_setup":20.295,"agent_exec":600.111,"verifier":8.576},"taskName":"task_28","jobId":"f8v6suz","exec_duration":600.111}]},{"taskName":"task_29","instruction":"$b","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_29__TTnZzne","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":184.976,"latency_breakdown":{"env_setup":1.837,"agent_setup":13.972,"agent_exec":149.193,"verifier":9.525},"taskName":"task_29","jobId":"TTnZzne","exec_duration":149.193},{"job_name":"2026-04-23__12-58-38","trial_name":"task_29__wTNyjM9","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":152.966,"latency_breakdown":{"env_setup":2.376,"agent_setup":25.406,"agent_exec":91.548,"verifier":23.192},"taskName":"task_29","jobId":"wTNyjM9","exec_duration":91.548},{"job_name":"2026-04-22__14-24-12","trial_name":"task_29__6WMD7nc","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":144.556,"latency_breakdown":{"env_setup":1.766,"agent_setup":18.371,"agent_exec":104.361,"verifier":9.594},"taskName":"task_29","jobId":"6WMD7nc","exec_duration":104.361},{"job_name":"2026-04-19__22-57-39","trial_name":"task_29__Pr4sANN","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":242.977,"latency_breakdown":{"env_setup":8.736,"agent_setup":77.733,"agent_exec":120.192,"verifier":21.811},"taskName":"task_29","jobId":"Pr4sANN","exec_duration":120.192}]},{"taskName":"task_30","instruction":"$c","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_30__BbURBCh","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":412.174,"latency_breakdown":{"env_setup":7.401,"agent_setup":21.692,"agent_exec":370.727,"verifier":1.848},"taskName":"task_30","jobId":"BbURBCh","exec_duration":370.727},{"job_name":"2026-04-23__12-58-38","trial_name":"task_30__oLE7YkJ","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":815.374,"latency_breakdown":{"env_setup":18.501,"agent_setup":161.333,"agent_exec":600.068,"verifier":23.584},"taskName":"task_30","jobId":"oLE7YkJ","exec_duration":600.068},{"job_name":"2026-04-22__14-24-12","trial_name":"task_30__S8QdXwM","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":361.639,"latency_breakdown":{"env_setup":11.992,"agent_setup":30.036,"agent_exec":306.6,"verifier":2.417},"taskName":"task_30","jobId":"S8QdXwM","exec_duration":306.6},{"job_name":"2026-04-19__22-57-39","trial_name":"task_30__FHs9jZC","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":337.006,"latency_breakdown":{"env_setup":5.704,"agent_setup":16.558,"agent_exec":291.207,"verifier":7.8},"taskName":"task_30","jobId":"FHs9jZC","exec_duration":291.207}]},{"taskName":"task_35","instruction":"$d","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_35__zqQYGC5","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":92.474,"latency_breakdown":{"env_setup":1.618,"agent_setup":16.88,"agent_exec":59.756,"verifier":3.764},"taskName":"task_35","jobId":"zqQYGC5","exec_duration":59.756},{"job_name":"2026-04-23__12-58-38","trial_name":"task_35__UiCLUsw","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":277.299,"latency_breakdown":{"env_setup":5.215,"agent_setup":115.565,"agent_exec":131.336,"verifier":14.747},"taskName":"task_35","jobId":"UiCLUsw","exec_duration":131.336},{"job_name":"2026-04-22__14-24-12","trial_name":"task_35__utnrM3c","model":"claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":238.287,"latency_breakdown":{"env_setup":11.833,"agent_setup":39.678,"agent_exec":172.968,"verifier":3.363},"taskName":"task_35","jobId":"utnrM3c","exec_duration":172.968},{"job_name":"2026-04-19__22-57-39","trial_name":"task_35__j6snSjx","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":148.855,"latency_breakdown":{"env_setup":3.945,"agent_setup":19.221,"agent_exec":80.198,"verifier":9.202},"taskName":"task_35","jobId":"j6snSjx","exec_duration":80.198}]},{"taskName":"task_38","instruction":"$e","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_38__TfkAy2A","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":235.808,"latency_breakdown":{"env_setup":7.38,"agent_setup":25.82,"agent_exec":186.576,"verifier":5.411},"taskName":"task_38","jobId":"TfkAy2A","exec_duration":186.576},{"job_name":"2026-04-23__12-58-38","trial_name":"task_38__KKGw89R","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":479.124,"latency_breakdown":{"env_setup":18.497,"agent_setup":181.426,"agent_exec":245.259,"verifier":23.436},"taskName":"task_38","jobId":"KKGw89R","exec_duration":245.259},{"job_name":"2026-04-22__14-24-12","trial_name":"task_38__2CeC4bc","model":"claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":232.417,"latency_breakdown":{"env_setup":11.977,"agent_setup":36.13,"agent_exec":167.799,"verifier":5.791},"taskName":"task_38","jobId":"2CeC4bc","exec_duration":167.799},{"job_name":"2026-04-19__22-57-39","trial_name":"task_38__npEamPS","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":222.826,"latency_breakdown":{"env_setup":5.69,"agent_setup":27.793,"agent_exec":158.478,"verifier":14.643},"taskName":"task_38","jobId":"npEamPS","exec_duration":158.478}]},{"taskName":"task_39","instruction":"$f","trials":[{"job_name":"2026-04-22__15-14-39","trial_name":"task_39__S8YfjSY","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":152.304,"latency_breakdown":{"env_setup":7.402,"agent_setup":25.04,"agent_exec":104.709,"verifier":4.67},"taskName":"task_39","jobId":"S8YfjSY","exec_duration":104.709},{"job_name":"2026-04-23__12-58-38","trial_name":"task_39__9pQiuKL","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":409.668,"latency_breakdown":{"env_setup":18.482,"agent_setup":92.234,"agent_exec":274.705,"verifier":13.672},"taskName":"task_39","jobId":"9pQiuKL","exec_duration":274.705},{"job_name":"2026-04-22__14-24-12","trial_name":"task_39__CR23vzg","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":198.838,"latency_breakdown":{"env_setup":12.049,"agent_setup":38.181,"agent_exec":134.454,"verifier":3.696},"taskName":"task_39","jobId":"CR23vzg","exec_duration":134.454},{"job_name":"2026-04-19__22-57-39","trial_name":"task_39__wR6Reap","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":223.803,"latency_breakdown":{"env_setup":8.628,"agent_setup":27.335,"agent_exec":161.074,"verifier":8.389},"taskName":"task_39","jobId":"wR6Reap","exec_duration":161.074}]}]}]]}],["$L10","$L11"],"$L12"]}],"loading":null,"isPartial":false}
+10:["$","script","script-0",{"src":"/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/c0abab8b687eb150.js","async":true}]
+11:["$","script","script-1",{"src":"/mastra-benchmark/pr-preview/pr-1/_next/static/chunks/be08138953094657.js","async":true}]
+12:["$","$L13",null,{"children":["$","$14",null,{"name":"Next.MetadataOutlet","children":"$@15"}]}]
+15:null
