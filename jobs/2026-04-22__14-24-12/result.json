@@ -1,0 +1,43 @@
+{
+    "id": "d233d318-3b4c-4c42-99fc-254d861917c1",
+    "started_at": "2026-04-22T14:24:15.921650",
+    "finished_at": "2026-04-22T14:33:34.888504",
+    "n_total_trials": 13,
+    "stats": {
+        "n_trials": 13,
+        "n_errors": 0,
+        "evals": {
+            "pochi__claude-4-6-sonnet__mastra-tasks": {
+                "n_trials": 13,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.8461538461538461
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "task_30__S8QdXwM",
+                            "task_39__CR23vzg",
+                            "task_22__7Li5Pgv",
+                            "task_25__JYRi9o2",
+                            "task_24__ygknspV",
+                            "task_23__pJNgMcd",
+                            "task_28__LwmSXqe",
+                            "task_26__yVNiJZf",
+                            "task_21__5CfVtsb",
+                            "task_27__ACyV5wW",
+                            "task_29__6WMD7nc"
+                        ],
+                        "0.0": [
+                            "task_38__2CeC4bc",
+                            "task_35__utnrM3c"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

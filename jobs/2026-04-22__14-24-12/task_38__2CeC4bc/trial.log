@@ -1,0 +1,93 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo task_38__2CeC4bc > /logs/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.5": {
+          "name": "kimi-K2.5"
+        },
+        "Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+          "name": "qwen3-coder-480b"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model anthropic/claude-4-6-sonnet --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Multi-Model Mastra Agents
+
+## Background
+Mastra allows creating agents that use different LLM providers via the Vercel AI SDK. This task requires setting up a Mastra instance with two agents, one using OpenAI and the other using Anthropic.
+
+## Requirements
+- Initialize a Node.js project and install Mastra dependencies.
+- Create a Mastra instance with two agents:
+  1. `openai-agent` using `openai/gpt-4o` with instructions "You are an OpenAI assistant."
+  2. `anthropic-agent` using `anthropic/claude-3-5-sonnet-20240620` with instructions "You are an Anthropic assistant."
+- Write a script to instantiate the Mastra instance, prompt both agents with "Say hello", and save their responses to a log file.
+
+## Implementation Guide
+1. Create a project directory at `/home/user/mastra-multi-model` and initialize it with `npm init -y`.
+2. Install required dependencies: `npm install @mastra/core @mastra/memory zod dotenv`.
+3. Create `index.ts` (or `.js`) that configures a `Mastra` instance with the two agents.
+4. Ensure the script reads `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` from the environment.
+5. The script should call `generate('Say hello')` on both agents.
+6. Write the output of both agents to `/home/user/mastra-multi-model/output.log`.
+
+## Constraints
+- Project path: `/home/user/mastra-multi-model`
+- Log file: `/home/user/mastra-multi-model/output.log`
+- You must use `@mastra/core` and `@mastra/core/agent` to define the agents.
+- You can run the script via `npx tsx index.ts` or similar.
+
+## Integrations
+- OpenAI
+- Anthropic
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

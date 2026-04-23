@@ -1,0 +1,11 @@
+# Mastra Multi-Model Agent Run
+Timestamp: 2026-04-22T21:27:22.184Z
+
+[openai-agent]
+Prompt   : Say hello
+Response : Hello! How can I assist you today?
+
+[anthropic-agent]
+Prompt   : Say hello
+Response : ERROR: invalid x-api-key
+

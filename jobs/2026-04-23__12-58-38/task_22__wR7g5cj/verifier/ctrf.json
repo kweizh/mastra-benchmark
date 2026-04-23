@@ -1,0 +1,38 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776974739.1167457,
+            "stop": 1776974739.1212091
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_index_file_exists_and_contains_libsql",
+                "status": "passed",
+                "duration": 0.0002966210013255477,
+                "start": 1776974739.120188,
+                "stop": 1776974739.1206508,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_db_file_exists_and_not_empty",
+                "status": "passed",
+                "duration": 0.0002482880081515759,
+                "start": 1776974739.1207223,
+                "stop": 1776974739.1210957,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "id": "06ce7741-f350-46f2-802f-c0da5ff3977c",
+    "started_at": "2026-04-22T15:14:42.196176",
+    "finished_at": "2026-04-22T15:29:24.268725",
+    "n_total_trials": 13,
+    "stats": {
+        "n_trials": 13,
+        "n_errors": 0,
+        "evals": {
+            "pochi__gpt-5.2-codex__mastra-tasks": {
+                "n_trials": 13,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.5384615384615384
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "task_30__BbURBCh",
+                            "task_22__9eLYrH7",
+                            "task_25__msA92oj",
+                            "task_23__AvEi3ny",
+                            "task_28__odAzGHM",
+                            "task_27__ePa9aG3",
+                            "task_29__TTnZzne"
+                        ],
+                        "0.0": [
+                            "task_39__S8YfjSY",
+                            "task_38__TfkAy2A",
+                            "task_24__YaN9QMf",
+                            "task_35__zqQYGC5",
+                            "task_26__Fh9BQar",
+                            "task_21__CdpH4d3"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

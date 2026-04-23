@@ -1,0 +1,59 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 3,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776896304.8221319,
+            "stop": 1776896308.1933827
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_directory_exists",
+                "status": "passed",
+                "duration": 0.0003230660076951608,
+                "start": 1776896304.8262367,
+                "stop": 1776896304.8267088,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_index_file_contains_models",
+                "status": "passed",
+                "duration": 0.0002750749990809709,
+                "start": 1776896304.826779,
+                "stop": 1776896304.8271618,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 3.360011949996988,
+                "start": 1776896304.8272185,
+                "stop": 1776896308.1927078,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_execution():\n        target_file = INDEX_FILE if os.path.isfile(INDEX_FILE) else INDEX_JS_FILE\n    \n        # Run the script using tsx or node\n        if target_file.endswith(\".ts\"):\n            cmd = [\"npx\", \"tsx\", target_file]\n        else:\n            cmd = [\"node\", target_file]\n    \n        result = subprocess.run(cmd, cwd=PROJECT_DIR, capture_output=True, text=True)\n>       assert result.returncode == 0, f\"Script execution failed: {result.stderr}\"\nE       AssertionError: Script execution failed: npm warn exec The following package was not found and will be installed: tsx@4.21.0\nE         Error executing step workflow.execution-workflow.step.prepare-memory-step: Error: Memory requires a storage provider to function. Add a storage configuration to Memory or to your Mastra instance.\nE         \nE         https://mastra.ai/en/docs/memory/overview\nE             at Memory.get storage (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:30078:13)\nE             at Memory.getInputProcessors (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:30258:36)\nE             at Memory.getInputProcessors (/home/user/mastra-multi-model/node_modules/@mastra/memory/dist/index.cjs:18487:36)\nE             at _Agent.listResolvedInputProcessors (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:21994:52)\nE             at async _Agent.getProcessorRunner (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:21904:29)\nE             at async _Agent.__runInputProcessors (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:23463:22)\nE             at async Object.execute (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:21241:38)\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['npx', 'tsx', '/home/user/mastra-multi-model/index.ts'], returncode=1, stdout='\u25c7 injected env (... at async Object.execute (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:21241:38)\\n').returncode\n\ntests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_exists_and_contains_responses",
+                "status": "passed",
+                "duration": 0.00032594799995422363,
+                "start": 1776896308.1927922,
+                "stop": 1776896308.1932347,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

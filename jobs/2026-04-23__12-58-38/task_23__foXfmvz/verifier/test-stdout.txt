@@ -1,0 +1,90 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 5ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+tests/test_final_state.py ..F                                            [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_script_execution_and_output _______________________
+
+    def test_script_execution_and_output():
+        # Run the script to ensure it works
+        result = subprocess.run(
+            ["npx", "tsx", "index.ts"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True
+        )
+        assert result.returncode == 0, f"Script execution failed: {result.stderr}"
+    
+        output_log = os.path.join(PROJECT_DIR, "output.log")
+        assert os.path.isfile(output_log), "output.log not found."
+    
+        with open(output_log, "r") as f:
+            log_content = f.read().lower()
+    
+>       assert "plumbus" in log_content or "dinglebop" in log_content or "shleem" in log_content, \
+            f"output.log does not contain expected information about a Plumbus. Content: {log_content}"
+E       AssertionError: output.log does not contain expected information about a Plumbus. Content: === rag pipeline results ===
+E         
+E         query: "what is the main topic of the document?"
+E         
+E         retrieved 3 chunks:
+E         
+E         --- chunk 1 ---
+E         id: 979b5d30-9121-4087-8ea0-0738849d5a39
+E         score: 0.2231
+E         content: ## challenges and future directions
+E         
+E         despite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.
+E         metadata: {"text":"## challenges and future directions\n\ndespite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.","source":"data.md","chunkindex":10}
+E         
+E         --- chunk 2 ---
+E         id: f62be1de-fc74-4288-899f-5eb12138ceb5
+E         score: 0.2231
+E         content: ## challenges and future directions
+E         
+E         despite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.
+E         metadata: {"text":"## challenges and future directions\n\ndespite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.","source":"data.md","chunkindex":10}
+E         
+E         --- chunk 3 ---
+E         id: 850da05d-6e83-47d0-a906-e4e9b99cbf8c
+E         score: 0.2019
+E         content: ## applications
+E         
+E         machine learning has numerous real-world applications:
+E         - healthcare: disease diagnosis, drug discovery, personalized medicine
+E         - finance: fraud detection, algorithmic trading, credit scoring
+E         - transportation: self-driving cars, route optimization
+E         - e-commerce: recommendation systems, demand forecasting
+E         - marketing: customer segmentation, targeted advertising
+E         
+E         ## challenges and future directions
+E         metadata: {"text":"## applications\n\nmachine learning has numerous real-world applications:\n- healthcare: disease diagnosis, drug discovery, personalized medicine\n- finance: fraud detection, algorithmic trading, credit scoring\n- transportation: self-driving cars, route optimization\n- e-commerce: recommendation systems, demand forecasting\n- marketing: customer segmentation, targeted advertising\n\n## challenges and future directions","source":"data.md","chunkindex":9}
+E         
+E         
+E       assert ('plumbus' in '=== rag pipeline results ===\n\nquery: "what is the main topic of the document?"\n\nretrieved 3 chunks:\n\n--- chunk ...er segmentation, targeted advertising\\n\\n## challenges and future directions","source":"data.md","chunkindex":9}\n\n' or 'dinglebop' in '=== rag pipeline results ===\n\nquery: "what is the main topic of the document?"\n\nretrieved 3 chunks:\n\n--- chunk ...er segmentation, targeted advertising\\n\\n## challenges and future directions","source":"data.md","chunkindex":9}\n\n' or 'shleem' in '=== rag pipeline results ===\n\nquery: "what is the main topic of the document?"\n\nretrieved 3 chunks:\n\n--- chunk ...er segmentation, targeted advertising\\n\\n## challenges and future directions","source":"data.md","chunkindex":9}\n\n')
+
+tests/test_final_state.py:39: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_project_initialized
+PASSED tests/test_final_state.py::test_index_ts_exists_and_uses_rag
+FAILED tests/test_final_state.py::test_script_execution_and_output - Assertio...
+========================= 1 failed, 2 passed in 1.69s ==========================

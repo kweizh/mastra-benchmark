@@ -1,0 +1,38 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776893421.6883285,
+            "stop": 1776893429.155115
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_index_ts_exists_and_contains_agent_definition",
+                "status": "passed",
+                "duration": 0.0002879980020225048,
+                "start": 1776893421.6919446,
+                "stop": 1776893421.6923716,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution_and_output",
+                "status": "passed",
+                "duration": 7.461949475997244,
+                "start": 1776893421.6924453,
+                "stop": 1776893429.154883,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

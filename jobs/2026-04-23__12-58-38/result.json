@@ -1,0 +1,48 @@
+{
+    "id": "c70ffb71-991a-4c61-a567-469f94bddf77",
+    "started_at": "2026-04-23T12:58:39.175220",
+    "finished_at": "2026-04-23T13:20:13.728361",
+    "n_total_trials": 13,
+    "stats": {
+        "n_trials": 13,
+        "n_errors": 2,
+        "evals": {
+            "pochi__glm-4.7__mastra-tasks": {
+                "n_trials": 13,
+                "n_errors": 2,
+                "metrics": [
+                    {
+                        "mean": 0.6153846153846154
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "task_30__oLE7YkJ",
+                            "task_38__KKGw89R",
+                            "task_23__foXfmvz",
+                            "task_35__UiCLUsw",
+                            "task_26__82hNDuq"
+                        ],
+                        "1.0": [
+                            "task_39__9pQiuKL",
+                            "task_22__wR7g5cj",
+                            "task_25__M3QFqRN",
+                            "task_24__kevQeKP",
+                            "task_28__z5sAqTS",
+                            "task_21__6fTEXiw",
+                            "task_27__bcgvYr9",
+                            "task_29__wTNyjM9"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "AgentTimeoutError": [
+                        "task_30__oLE7YkJ",
+                        "task_23__foXfmvz"
+                    ]
+                }
+            }
+        }
+    }
+}

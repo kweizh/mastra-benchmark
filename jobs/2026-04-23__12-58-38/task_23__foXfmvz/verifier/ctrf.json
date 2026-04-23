@@ -1,0 +1,50 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 2,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776975460.2600482,
+            "stop": 1776975461.9486454
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_initialized",
+                "status": "passed",
+                "duration": 0.00028975700843147933,
+                "start": 1776975460.2646537,
+                "stop": 1776975460.2650828,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_index_ts_exists_and_uses_rag",
+                "status": "passed",
+                "duration": 0.00022033900313545018,
+                "start": 1776975460.265153,
+                "stop": 1776975460.265469,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution_and_output",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1.6765577109908918,
+                "start": 1776975460.265535,
+                "stop": 1776975461.948375,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_execution_and_output():\n        # Run the script to ensure it works\n        result = subprocess.run(\n            [\"npx\", \"tsx\", \"index.ts\"],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True\n        )\n        assert result.returncode == 0, f\"Script execution failed: {result.stderr}\"\n    \n        output_log = os.path.join(PROJECT_DIR, \"output.log\")\n        assert os.path.isfile(output_log), \"output.log not found.\"\n    \n        with open(output_log, \"r\") as f:\n            log_content = f.read().lower()\n    \n>       assert \"plumbus\" in log_content or \"dinglebop\" in log_content or \"shleem\" in log_content, \\\n            f\"output.log does not contain expected information about a Plumbus. Content: {log_content}\"\nE       AssertionError: output.log does not contain expected information about a Plumbus. Content: === rag pipeline results ===\nE         \nE         query: \"what is the main topic of the document?\"\nE         \nE         retrieved 3 chunks:\nE         \nE         --- chunk 1 ---\nE         id: 979b5d30-9121-4087-8ea0-0738849d5a39\nE         score: 0.2231\nE         content: ## challenges and future directions\nE         \nE         despite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.\nE         metadata: {\"text\":\"## challenges and future directions\\n\\ndespite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.\",\"source\":\"data.md\",\"chunkindex\":10}\nE         \nE         --- chunk 2 ---\nE         id: f62be1de-fc74-4288-899f-5eb12138ceb5\nE         score: 0.2231\nE         content: ## challenges and future directions\nE         \nE         despite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.\nE         metadata: {\"text\":\"## challenges and future directions\\n\\ndespite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. the future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.\",\"source\":\"data.md\",\"chunkindex\":10}\nE         \nE         --- chunk 3 ---\nE         id: 850da05d-6e83-47d0-a906-e4e9b99cbf8c\nE         score: 0.2019\nE         content: ## applications\nE         \nE         machine learning has numerous real-world applications:\nE         - healthcare: disease diagnosis, drug discovery, personalized medicine\nE         - finance: fraud detection, algorithmic trading, credit scoring\nE         - transportation: self-driving cars, route optimization\nE         - e-commerce: recommendation systems, demand forecasting\nE         - marketing: customer segmentation, targeted advertising\nE         \nE         ## challenges and future directions\nE         metadata: {\"text\":\"## applications\\n\\nmachine learning has numerous real-world applications:\\n- healthcare: disease diagnosis, drug discovery, personalized medicine\\n- finance: fraud detection, algorithmic trading, credit scoring\\n- transportation: self-driving cars, route optimization\\n- e-commerce: recommendation systems, demand forecasting\\n- marketing: customer segmentation, targeted advertising\\n\\n## challenges and future directions\",\"source\":\"data.md\",\"chunkindex\":9}\nE         \nE         \nE       assert ('plumbus' in '=== rag pipeline results ===\\n\\nquery: \"what is the main topic of the document?\"\\n\\nretrieved 3 chunks:\\n\\n--- chunk ...er segmentation, targeted advertising\\\\n\\\\n## challenges and future directions\",\"source\":\"data.md\",\"chunkindex\":9}\\n\\n' or 'dinglebop' in '=== rag pipeline results ===\\n\\nquery: \"what is the main topic of the document?\"\\n\\nretrieved 3 chunks:\\n\\n--- chunk ...er segmentation, targeted advertising\\\\n\\\\n## challenges and future directions\",\"source\":\"data.md\",\"chunkindex\":9}\\n\\n' or 'shleem' in '=== rag pipeline results ===\\n\\nquery: \"what is the main topic of the document?\"\\n\\nretrieved 3 chunks:\\n\\n--- chunk ...er segmentation, targeted advertising\\\\n\\\\n## challenges and future directions\",\"source\":\"data.md\",\"chunkindex\":9}\\n\\n')\n\ntests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

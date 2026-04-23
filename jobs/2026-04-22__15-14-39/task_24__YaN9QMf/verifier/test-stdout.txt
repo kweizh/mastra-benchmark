@@ -1,0 +1,84 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 6ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 4 items
+
+tests/test_final_state.py .FFF                                           [100%]
+
+=================================== FAILURES ===================================
+____________________________ test_script_execution _____________________________
+
+    def test_script_execution():
+        """Run the script to generate output.json."""
+        result = subprocess.run(
+            ["npx", "tsx", "src/index.ts"],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True
+        )
+>       assert result.returncode == 0, f"Script execution failed: {result.stderr}"
+E       AssertionError: Script execution failed: /home/user/project/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:11317
+E               steps: steps.map(([_cond, step]) => ({ type: "step", step })),
+E                            ^
+E         
+E         TypeError: steps.map is not a function
+E             at Workflow.branch (/home/user/project/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:11317:20)
+E             at <anonymous> (/home/user/project/src/workflow.ts:66:4)
+E             at Object.<anonymous> (/home/user/project/src/workflow.ts:71:11)
+E             at Module._compile (node:internal/modules/cjs/loader:1812:14)
+E             at Object.transformer (/home/user/project/node_modules/tsx/dist/register-D46fvsV_.cjs:3:1104)
+E             at Module.load (node:internal/modules/cjs/loader:1533:32)
+E             at Module._load (node:internal/modules/cjs/loader:1335:12)
+E             at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+E             at Module.require (node:internal/modules/cjs/loader:1556:12)
+E             at require (node:internal/modules/helpers:152:16)
+E         
+E         Node.js v24.14.1
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['npx', 'tsx', 'src/index.ts'], returncode=1, stdout='', stderr='/home/user/project/node_modules...ode:internal/modules/cjs/loader:1556:12)\n    at require (node:internal/modules/helpers:152:16)\n\nNode.js v24.14.1\n').returncode
+
+tests/test_final_state.py:25: AssertionError
+___________________________ test_output_file_exists ____________________________
+
+    def test_output_file_exists():
+        """Verify that output.json exists."""
+>       assert os.path.isfile(OUTPUT_FILE), f"File {OUTPUT_FILE} does not exist."
+E       AssertionError: File /home/user/project/output.json does not exist.
+E       assert False
+E        +  where False = <function isfile at 0xf2a62d070220>('/home/user/project/output.json')
+E        +    where <function isfile at 0xf2a62d070220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:29: AssertionError
+_____________________________ test_output_content ______________________________
+
+    def test_output_content():
+        """Read output.json and verify its contents match the expected output."""
+>       with open(OUTPUT_FILE, "r") as f:
+             ^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/user/project/output.json'
+
+tests/test_final_state.py:33: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_workflow_uses_branch
+FAILED tests/test_final_state.py::test_script_execution - AssertionError: Scr...
+FAILED tests/test_final_state.py::test_output_file_exists - AssertionError: F...
+FAILED tests/test_final_state.py::test_output_content - FileNotFoundError: [E...
+========================= 3 failed, 1 passed in 1.08s ==========================
