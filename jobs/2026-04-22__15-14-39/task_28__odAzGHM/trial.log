@@ -1,0 +1,92 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo task_28__odAzGHM > /logs/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.5": {
+          "name": "kimi-K2.5"
+        },
+        "Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+          "name": "qwen3-coder-480b"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Mastra AI Recruiter Workflow
+
+## Background
+You need to build an AI recruiter workflow using Mastra. The workflow will parse a candidate's resume, determine if they are technical or non-technical, and generate a specific interview question based on their profile.
+
+## Requirements
+- Initialize a Node.js project at `/home/user/ai-recruiter`.
+- Install `@mastra/core` and `zod`.
+- Write a script `run.js` (or `run.ts` if you prefer, but ensure it can be run with `node` or `tsx`).
+- Create a Mastra Agent using the `openai/gpt-4o-mini` model with the instruction "You are an expert recruiter.".
+- Create a `gatherCandidateInfo` step that uses the Agent to parse `resumeText` and outputs `candidateName` (string), `isTechnical` (boolean), and `specialty` (string).
+- Create an `askAboutSpecialty` step that takes the output of the first step and generates a question about their specialty.
+- Create an `askAboutRole` step that takes the output of the first step and generates a question about what interests them in the role.
+- Create a Workflow that takes `{ resumeText: z.string() }` as input.
+- The workflow should start with `gatherCandidateInfo`, then use `.branch()` to conditionally route to `askAboutSpecialty` if `isTechnical` is true, or `askAboutRole` if `isTechnical` is false.
+- Execute the workflow for two candidates:
+  1. "Alice is a Software Engineer with 10 years of experience in React and Node.js."
+  2. "Bob is a Marketing Manager with 5 years of experience in SEO and content strategy."
+- Save the final workflow output (the `.result` object from both runs) as a JSON array to `/home/user/ai-recruiter/output.json`.
+
+## Constraints
+- Project path: `/home/user/ai-recruiter`
+- Output file: `/home/user/ai-recruiter/output.json`
+- Use `openai/gpt-4o-mini` for the agent model.
+- Ensure `OPENAI_API_KEY` is available in the environment.
+
+## Integrations
+- OpenAI
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

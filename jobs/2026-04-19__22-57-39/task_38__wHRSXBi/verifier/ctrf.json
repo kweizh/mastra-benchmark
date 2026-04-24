@@ -1,0 +1,65 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 1,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777067980.4455047,
+            "stop": 1777067982.3230276
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_directory_exists",
+                "status": "passed",
+                "duration": 0.0002543290320318192,
+                "start": 1777067980.4493947,
+                "stop": 1777067980.449779,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_index_file_contains_models",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00033945299219340086,
+                "start": 1777067980.4498532,
+                "stop": 1777067980.4546626,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_index_file_contains_models():\n        # Check if either index.ts or index.js exists\n        target_file = None\n        if os.path.isfile(INDEX_FILE):\n            target_file = INDEX_FILE\n        elif os.path.isfile(INDEX_JS_FILE):\n            target_file = INDEX_JS_FILE\n    \n        assert target_file is not None, \"Neither index.ts nor index.js found in the project directory.\"\n    \n        with open(target_file, \"r\") as f:\n            content = f.read()\n    \n>       assert \"openai/gpt-4o\" in content, \"Model 'openai/gpt-4o' not found in the script.\"\nE       AssertionError: Model 'openai/gpt-4o' not found in the script.\nE       assert 'openai/gpt-4o' in \"import { Mastra } from '@mastra/core';\\nimport { Agent } from '@mastra/core/agent';\\nimport { openai } from '@ai-sdk/...\\n  } catch (error) {\\n    console.error('Error during execution:', error);\\n    process.exit(1);\\n  }\\n}\\n\\nmain();\\n\"\n\ntests/test_final_state.py:26: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1.8652702790277544,
+                "start": 1777067980.454725,
+                "stop": 1777067982.321594,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_script_execution():\n        target_file = INDEX_FILE if os.path.isfile(INDEX_FILE) else INDEX_JS_FILE\n    \n        # Run the script using tsx or node\n        if target_file.endswith(\".ts\"):\n            cmd = [\"npx\", \"tsx\", target_file]\n        else:\n            cmd = [\"node\", target_file]\n    \n        result = subprocess.run(cmd, cwd=PROJECT_DIR, capture_output=True, text=True)\n>       assert result.returncode == 0, f\"Script execution failed: {result.stderr}\"\nE       AssertionError: Script execution failed: Upstream LLM API error {\nE           error: APICallError [AI_APICallError]: model: claude-3-opus-20240229\nE               at <anonymous> (/home/user/mastra-multi-model/node_modules/@ai-sdk/anthropic/node_modules/@ai-sdk/provider-utils/src/response-handler.ts:56:16)\nE               at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\nE               at async postToApi (/home/user/mastra-multi-model/node_modules/@ai-sdk/anthropic/node_modules/@ai-sdk/provider-utils/src/post-to-api.ts:118:28)\nE               at async AnthropicMessagesLanguageModel.doGenerate (/home/user/mastra-multi-model/node_modules/@ai-sdk/anthropic/src/anthropic-messages-language-model.ts:839:9)\nE               at async AISDKV6LanguageModel.doGenerate (/home/user/mastra-multi-model/node_modules/@mastra/core/src/llm/model/aisdk/v6/model.ts:69:20)\nE               at async pRetry.default.retries (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-BPT3YHUU.js:14281:34)\nE               at async Module.pRetry (file:///home/user/mastra-multi-model/node_modules/p-retry/index.js:197:19)\nE               at async createStream (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-BPT3YHUU.js:14278:16)\nE               at async Object.start (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-BPT3YHUU.js:2577:27) {\nE             cause: undefined,\nE             url: 'https://api.anthropic.com/v1/messages',\nE             requestBodyValues: {\nE               model: 'claude-3-opus-20240229',\nE               max_tokens: 4096,\nE               temperature: 0,\nE               top_k: undefined,\nE               top_p: undefined,\nE               stop_sequences: undefined,\nE               system: [Array],\nE               messages: [Array],\nE               tools: undefined,\nE               tool_choice: undefined,\nE               stream: undefined\nE             },\nE             statusCode: 404,\nE             responseHeaders: {\nE               'anthropic-organization-id': '30d75dc9-5486-4cee-bfc8-d96b5c1d1406',\nE               'cf-cache-status': 'DYNAMIC',\nE               'cf-ray': '9f18606899ce3911-SJC',\nE               connection: 'keep-alive',\nE               'content-encoding': 'gzip',\nE               'content-security-policy': \"default-src 'none'; frame-ancestors 'none'\",\nE               'content-type': 'application/json',\nE               date: 'Fri, 24 Apr 2026 21:59:42 GMT',\nE               'request-id': 'req_011CaPM6UnuaabmXsxBcNoo4',\nE               server: 'cloudflare',\nE               'set-cookie': '_cfuvid=C0TefQj9jUMq0BpPm1ZT8SusLuUNsXBknpKa2dkkPy4-1777067982.1800969-1.0.1.1-3JqqogYNwTu.tgNjGaxVWmhQmIZFiICdD3V6_8rx4QY; HttpOnly; SameSite=None; Secure; Path=/; Domain=api.anthropic.com',\nE               'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\nE               'transfer-encoding': 'chunked',\nE               'x-envoy-upstream-service-time': '42',\nE               'x-robots-tag': 'none',\nE               'x-should-retry': 'false'\nE             },\nE             responseBody: '{\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-3-opus-20240229\"},\"request_id\":\"req_011CaPM6UnuaabmXsxBcNoo4\"}',\nE             isRetryable: false,\nE             data: { type: 'error', error: [Object] },\nE             Symbol(vercel.ai.error): true,\nE             Symbol(vercel.ai.error.AI_APICallError): true\nE           },\nE           runId: 'a9ed7f95-3ad3-439a-b894-6443b3869a44',\nE           provider: 'anthropic.messages',\nE           modelId: 'claude-3-opus-20240229'\nE         }\nE         Error during execution: APICallError [AI_APICallError]: model: claude-3-opus-20240229\nE             at <anonymous> (/home/user/mastra-multi-model/node_modules/@ai-sdk/anthropic/node_modules/@ai-sdk/provider-utils/src/response-handler.ts:56:16)\nE             at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\nE             at async postToApi (/home/user/mastra-multi-model/node_modules/@ai-sdk/anthropic/node_modules/@ai-sdk/provider-utils/src/post-to-api.ts:118:28)\nE             at async AnthropicMessagesLanguageModel.doGenerate (/home/user/mastra-multi-model/node_modules/@ai-sdk/anthropic/src/anthropic-messages-language-model.ts:839:9)\nE             at async AISDKV6LanguageModel.doGenerate (/home/user/mastra-multi-model/node_modules/@mastra/core/src/llm/model/aisdk/v6/model.ts:69:20)\nE             at async pRetry.default.retries (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-BPT3YHUU.js:14281:34)\nE             at async Module.pRetry (file:///home/user/mastra-multi-model/node_modules/p-retry/index.js:197:19)\nE             at async createStream (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-BPT3YHUU.js:14278:16)\nE             at async Object.start (/home/user/mastra-multi-model/node_modules/@mastra/core/dist/chunk-BPT3YHUU.js:2577:27) {\nE           cause: undefined,\nE           url: 'https://api.anthropic.com/v1/messages',\nE           requestBodyValues: {\nE             model: 'claude-3-opus-20240229',\nE             max_tokens: 4096,\nE             temperature: 0,\nE             top_k: undefined,\nE             top_p: undefined,\nE             stop_sequences: undefined,\nE             system: [ [Object] ],\nE             messages: [ [Object] ],\nE             tools: undefined,\nE             tool_choice: undefined,\nE             stream: undefined\nE           },\nE           statusCode: 404,\nE           responseHeaders: {\nE             'anthropic-organization-id': '30d75dc9-5486-4cee-bfc8-d96b5c1d1406',\nE             'cf-cache-status': 'DYNAMIC',\nE             'cf-ray': '9f18606899ce3911-SJC',\nE             connection: 'keep-alive',\nE             'content-encoding': 'gzip',\nE             'content-security-policy': \"default-src 'none'; frame-ancestors 'none'\",\nE             'content-type': 'application/json',\nE             date: 'Fri, 24 Apr 2026 21:59:42 GMT',\nE             'request-id': 'req_011CaPM6UnuaabmXsxBcNoo4',\nE             server: 'cloudflare',\nE             'set-cookie': '_cfuvid=C0TefQj9jUMq0BpPm1ZT8SusLuUNsXBknpKa2dkkPy4-1777067982.1800969-1.0.1.1-3JqqogYNwTu.tgNjGaxVWmhQmIZFiICdD3V6_8rx4QY; HttpOnly; SameSite=None; Secure; Path=/; Domain=api.anthropic.com',\nE             'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',\nE             'transfer-encoding': 'chunked',\nE             'x-envoy-upstream-service-time': '42',\nE             'x-robots-tag': 'none',\nE             'x-should-retry': 'false'\nE           },\nE           responseBody: '{\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-3-opus-20240229\"},\"request_id\":\"req_011CaPM6UnuaabmXsxBcNoo4\"}',\nE           isRetryable: false,\nE           data: {\nE             type: 'error',\nE             error: {\nE               type: 'not_found_error',\nE               message: 'model: claude-3-opus-20240229'\nE             }\nE           },\nE           Symbol(vercel.ai.error): true,\nE           Symbol(vercel.ai.error.AI_APICallError): true\nE         }\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['npx', 'tsx', '/home/user/mastra-multi-model/index.ts'], returncode=1, stdout='Generating respo...-opus-20240229\\'\\n    }\\n  },\\n  Symbol(vercel.ai.error): true,\\n  Symbol(vercel.ai.error.AI_APICallError): true\\n}\\n').returncode\n\ntests/test_final_state.py:39: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_output_log_exists_and_contains_responses",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00034824400790967047,
+                "start": 1777067982.3216856,
+                "stop": 1777067982.3228495,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_output_log_exists_and_contains_responses():\n>       assert os.path.isfile(LOG_FILE), f\"Log file {LOG_FILE} does not exist.\"\nE       AssertionError: Log file /home/user/mastra-multi-model/output.log does not exist.\nE       assert False\nE        +  where False = <function isfile at 0xf923e3000220>('/home/user/mastra-multi-model/output.log')\nE        +    where <function isfile at 0xf923e3000220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:42: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

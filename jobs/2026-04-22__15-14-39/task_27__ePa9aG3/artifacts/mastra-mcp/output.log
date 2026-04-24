@@ -1,0 +1,217 @@
+{
+  text: 'The message "Hello from Mastra MCP" has been successfully written to `/home/user/data/hello.txt`.',
+  usage: {
+    inputTokens: 2665,
+    outputTokens: 55,
+    totalTokens: 2720,
+    reasoningTokens: 0,
+    cachedInputTokens: 1280
+  },
+  steps: [
+    {
+      stepType: 'initial',
+      sources: [],
+      files: [],
+      toolCalls: [Array],
+      toolResults: [Array],
+      content: [Array],
+      text: '',
+      tripwire: undefined,
+      reasoningText: '',
+      reasoning: [],
+      staticToolCalls: [Getter],
+      dynamicToolCalls: [Getter],
+      staticToolResults: [Getter],
+      dynamicToolResults: [Getter],
+      finishReason: 'tool-calls',
+      usage: [Object],
+      warnings: [],
+      request: [Object],
+      response: [Object],
+      providerMetadata: [Object]
+    },
+    {
+      stepType: 'tool-result',
+      sources: [],
+      files: [],
+      toolCalls: [],
+      toolResults: [],
+      content: [Array],
+      text: 'The message "Hello from Mastra MCP" has been successfully written to `/home/user/data/hello.txt`.',
+      tripwire: undefined,
+      reasoningText: '',
+      reasoning: [],
+      staticToolCalls: [Getter],
+      dynamicToolCalls: [Getter],
+      staticToolResults: [Getter],
+      dynamicToolResults: [Getter],
+      finishReason: 'stop',
+      usage: [Object],
+      warnings: [],
+      request: [Object],
+      response: [Object],
+      providerMetadata: [Object]
+    }
+  ],
+  finishReason: 'stop',
+  warnings: [],
+  providerMetadata: {
+    openai: {
+      responseId: 'resp_0d16b34dcee284070069e94a738a548197b9e0983d2b768bf5',
+      serviceTier: 'default'
+    }
+  },
+  request: {
+    body: {
+      model: 'gpt-4o-mini',
+      input: [Array],
+      temperature: 0,
+      top_p: undefined,
+      max_output_tokens: undefined,
+      conversation: undefined,
+      max_tool_calls: undefined,
+      metadata: undefined,
+      parallel_tool_calls: undefined,
+      previous_response_id: undefined,
+      store: undefined,
+      user: undefined,
+      instructions: undefined,
+      service_tier: undefined,
+      include: undefined,
+      prompt_cache_key: undefined,
+      prompt_cache_retention: undefined,
+      safety_identifier: undefined,
+      top_logprobs: undefined,
+      truncation: undefined,
+      tools: [Array],
+      tool_choice: 'auto'
+    }
+  },
+  reasoning: [],
+  reasoningText: undefined,
+  toolCalls: [
+    {
+      type: 'tool-call',
+      runId: 'e66e8b21-5774-4759-9169-4959fa2cd26e',
+      from: 'AGENT',
+      payload: [Object]
+    }
+  ],
+  toolResults: [
+    {
+      type: 'tool-result',
+      runId: 'e66e8b21-5774-4759-9169-4959fa2cd26e',
+      from: 'AGENT',
+      payload: [Object]
+    }
+  ],
+  sources: [],
+  files: [],
+  response: {
+    id: 'resp_0d16b34dcee284070069e94a738a548197b9e0983d2b768bf5',
+    timestamp: 2026-04-22T22:23:47.000Z,
+    modelId: 'gpt-4o-mini-2024-07-18',
+    headers: {
+      'alt-svc': 'h3=":443"; ma=86400',
+      'cf-cache-status': 'DYNAMIC',
+      'cf-ray': '9f0808f17cc35e16-SJC',
+      connection: 'keep-alive',
+      'content-encoding': 'br',
+      'content-type': 'application/json',
+      date: 'Wed, 22 Apr 2026 22:23:48 GMT',
+      'openai-organization': 'bbdc-ig9mlb',
+      'openai-processing-ms': '1039',
+      'openai-project': 'proj_mDJfZBQyHnB8227bHVTprles',
+      'openai-version': '2020-10-01',
+      server: 'cloudflare',
+      'set-cookie': '__cf_bm=ByqvrH6rd3nCKVj99bmsSrR5x7LOxtHK5mNnP_EEhcM-1776896627.4353638-1.0.1.1-WMh6M3NmKdJxlxpffwUQNpix_igFORh.bRN8X7Jcy20hCUugsx3D521bYODq0DscqjA3nhs7q0HAUfMdiUgCn.bUHwF6Eurvww5GqDxyQ3P6OtvxCiwOE2VNhLjX_TJb; HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Wed, 22 Apr 2026 22:53:48 GMT',
+      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+      'transfer-encoding': 'chunked',
+      'x-content-type-options': 'nosniff',
+      'x-ratelimit-limit-requests': '10000',
+      'x-ratelimit-limit-tokens': '10000000',
+      'x-ratelimit-remaining-requests': '9999',
+      'x-ratelimit-remaining-tokens': '9998423',
+      'x-ratelimit-reset-requests': '6ms',
+      'x-ratelimit-reset-tokens': '9ms',
+      'x-request-id': 'req_f73938af1e764f4eb33927c4ff41820b'
+    },
+    body: {
+      id: 'resp_0d16b34dcee284070069e94a738a548197b9e0983d2b768bf5',
+      object: 'response',
+      created_at: 1776896627,
+      status: 'completed',
+      background: false,
+      billing: [Object],
+      completed_at: 1776896628,
+      error: null,
+      frequency_penalty: 0,
+      incomplete_details: null,
+      instructions: null,
+      max_output_tokens: null,
+      max_tool_calls: null,
+      model: 'gpt-4o-mini-2024-07-18',
+      moderation: null,
+      output: [Array],
+      parallel_tool_calls: true,
+      presence_penalty: 0,
+      previous_response_id: null,
+      prompt_cache_key: null,
+      prompt_cache_retention: 'in_memory',
+      reasoning: [Object],
+      safety_identifier: null,
+      service_tier: 'default',
+      store: true,
+      temperature: 0,
+      text: [Object],
+      tool_choice: 'auto',
+      tools: [Array],
+      top_logprobs: 0,
+      top_p: 1,
+      truncation: 'disabled',
+      usage: [Object],
+      user: null,
+      metadata: {}
+    },
+    modelMetadata: {
+      modelId: 'gpt-4o-mini',
+      modelVersion: 'v3',
+      modelProvider: 'openai.responses'
+    },
+    messages: [ [Object], [Object], [Object] ],
+    uiMessages: [ [Object] ],
+    dbMessages: [ [Object] ]
+  },
+  totalUsage: {
+    inputTokens: 2665,
+    outputTokens: 55,
+    totalTokens: 2720,
+    reasoningTokens: 0,
+    cachedInputTokens: 1280
+  },
+  object: undefined,
+  error: undefined,
+  tripwire: undefined,
+  traceId: undefined,
+  spanId: undefined,
+  runId: 'e66e8b21-5774-4759-9169-4959fa2cd26e',
+  suspendPayload: undefined,
+  resumeSchema: undefined,
+  messages: [
+    {
+      id: 'f9850d89-468e-4b61-bf52-3bd257017600',
+      role: 'user',
+      createdAt: 2026-04-22T22:23:45.814Z,
+      content: [Object],
+      threadId: undefined,
+      resourceId: undefined
+    },
+    {
+      id: 'a27e3980-a35c-4166-ae4a-a5383acd0ce1',
+      role: 'assistant',
+      content: [Object],
+      createdAt: 2026-04-22T22:23:48.617Z
+    }
+  ],
+  rememberedMessages: []
+}

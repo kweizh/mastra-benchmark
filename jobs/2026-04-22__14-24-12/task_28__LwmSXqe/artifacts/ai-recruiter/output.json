@@ -1,0 +1,86 @@
+[
+  {
+    "status": "success",
+    "steps": {
+      "input": {
+        "resumeText": "Alice is a Software Engineer with 10 years of experience in React and Node.js."
+      },
+      "gatherCandidateInfo": {
+        "startedAt": 1776893388917,
+        "status": "success",
+        "output": {
+          "candidateName": "Alice",
+          "isTechnical": true,
+          "specialty": "Software Engineer"
+        },
+        "endedAt": 1776893390104
+      },
+      "askAboutSpecialty": {
+        "payload": {
+          "candidateName": "Alice",
+          "isTechnical": true,
+          "specialty": "Software Engineer"
+        },
+        "startedAt": 1776893390105,
+        "status": "success",
+        "output": {
+          "question": "Can you explain the differences between synchronous and asynchronous programming, and provide an example of a scenario where you would choose one approach over the other?"
+        },
+        "endedAt": 1776893391472
+      }
+    },
+    "input": {
+      "resumeText": "Alice is a Software Engineer with 10 years of experience in React and Node.js."
+    },
+    "stepExecutionPath": [
+      "gatherCandidateInfo"
+    ],
+    "result": {
+      "askAboutSpecialty": {
+        "question": "Can you explain the differences between synchronous and asynchronous programming, and provide an example of a scenario where you would choose one approach over the other?"
+      }
+    }
+  },
+  {
+    "status": "success",
+    "steps": {
+      "input": {
+        "resumeText": "Bob is a Marketing Manager with 5 years of experience in SEO and content strategy."
+      },
+      "gatherCandidateInfo": {
+        "startedAt": 1776893391473,
+        "status": "success",
+        "output": {
+          "candidateName": "Bob",
+          "isTechnical": false,
+          "specialty": "Marketing Management"
+        },
+        "endedAt": 1776893392458
+      },
+      "askAboutRole": {
+        "payload": {
+          "candidateName": "Bob",
+          "isTechnical": false,
+          "specialty": "Marketing Management"
+        },
+        "startedAt": 1776893392459,
+        "status": "success",
+        "output": {
+          "question": "What aspects of this Marketing Management role excite you the most, and how do you see them aligning with your career goals?"
+        },
+        "endedAt": 1776893393719
+      }
+    },
+    "input": {
+      "resumeText": "Bob is a Marketing Manager with 5 years of experience in SEO and content strategy."
+    },
+    "stepExecutionPath": [
+      "gatherCandidateInfo"
+    ],
+    "result": {
+      "askAboutRole": {
+        "question": "What aspects of this Marketing Management role excite you the most, and how do you see them aligning with your career goals?"
+      }
+    }
+  }
+]

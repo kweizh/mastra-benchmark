@@ -1,0 +1,26 @@
+{
+  "name": "research-assistant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "store": "tsx src/store.ts",
+    "ask": "tsx src/ask.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.53",
+    "@mastra/core": "^1.26.0",
+    "@mastra/libsql": "^1.9.0",
+    "@mastra/rag": "^2.2.1",
+    "ai": "^6.0.168",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}

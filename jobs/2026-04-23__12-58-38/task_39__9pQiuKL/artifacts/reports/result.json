@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "steps": {
+    "input": {},
+    "unstable-step": {
+      "startedAt": 1776974668464,
+      "status": "success",
+      "output": {
+        "status": "success"
+      },
+      "endedAt": 1776974668665
+    }
+  },
+  "input": {},
+  "stepExecutionPath": [
+    "unstable-step"
+  ],
+  "result": {
+    "status": "success"
+  }
+}

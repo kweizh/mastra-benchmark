@@ -1,0 +1,43 @@
+[2026-04-22T21:29:58.351Z] === Mastra RAG Pipeline ===
+[2026-04-22T21:29:58.352Z] Reading markdown file: /home/user/myproject/data.md
+[2026-04-22T21:29:58.352Z] Document content:
+# The History of the Plumbus
+
+A Plumbus is a common household device used for various everyday tasks.
+It is manufactured by first taking the dinglebop, and then smoothing it with a bunch of shleem.
+The shleem is then repurposed for later batches.
+[2026-04-22T21:29:58.352Z] Chunking document with Mastra MDocument (recursive strategy)...
+[2026-04-22T21:29:58.353Z] Created 1 chunk(s):
+[2026-04-22T21:29:58.353Z]   Chunk 1: "# The History of the Plumbus
+
+A Plumbus is a common household device used for various everyday tasks.
+It is manufactured by first taking the dinglebop, and then smoothing it with a bunch of shleem.
+The shleem is then repurposed for later batches."
+[2026-04-22T21:29:58.353Z] 
+Generating embeddings using model: text-embedding-3-small
+[2026-04-22T21:29:58.612Z] Generated 1 embedding vector(s) (dim=1536)
+[2026-04-22T21:29:58.612Z] 
+Initialising LibSQLVector store at: /home/user/myproject/vectors.db
+[2026-04-22T21:29:58.631Z] Created vector index "rag_index" with dimension 1536
+[2026-04-22T21:29:58.634Z] Upserted 1 vector(s) into the store
+[2026-04-22T21:29:58.634Z] 
+Querying vector store with: "What is the main topic of the document?"
+[2026-04-22T21:29:58.946Z] Retrieved 1 result(s):
+[2026-04-22T21:29:58.947Z]   Result 1 [id=chunk_0, score=0.1303]: "# The History of the Plumbus
+
+A Plumbus is a common household device used for various everyday tasks.
+It is manufactured by first taking the dinglebop, and then smoothing it with a bunch of shleem.
+The shleem is then repurposed for later batches."
+[2026-04-22T21:29:58.947Z] 
+=== Retrieved Context Chunks ===
+[2026-04-22T21:29:58.947Z] Top matching chunk: "# The History of the Plumbus
+
+A Plumbus is a common household device used for various everyday tasks.
+It is manufactured by first taking the dinglebop, and then smoothing it with a bunch of shleem.
+The shleem is then repurposed for later batches."
+[2026-04-22T21:29:58.947Z] 
+Answer to "What is the main topic of the document?":
+Based on the retrieved context, the main topic of the document is about the history and manufacturing process of the Plumbus — a common household device.
+[2026-04-22T21:29:58.947Z] 
+Output written to: /home/user/myproject/output.log
+[2026-04-22T21:29:58.947Z] === Pipeline Complete ===

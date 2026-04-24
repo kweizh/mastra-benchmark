@@ -1,0 +1,56 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776975054.794169,
+            "stop": 1776975055.4167998
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_uses_branch",
+                "status": "passed",
+                "duration": 0.00030276700272224844,
+                "start": 1776975054.7976177,
+                "stop": 1776975054.798097,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_script_execution",
+                "status": "passed",
+                "duration": 0.617326221006806,
+                "start": 1776975054.7981706,
+                "stop": 1776975055.4157665,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_file_exists",
+                "status": "passed",
+                "duration": 0.0002823490067385137,
+                "start": 1776975055.4158874,
+                "stop": 1776975055.416286,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_output_content",
+                "status": "passed",
+                "duration": 0.00022501098283100873,
+                "start": 1776975055.416359,
+                "stop": 1776975055.4166813,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

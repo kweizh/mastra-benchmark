@@ -1,0 +1,27 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@mastra/core": "^1.27.0",
+    "@mastra/libsql": "^1.9.0",
+    "@mastra/openai": "^1.0.1-alpha.48",
+    "@mastra/rag": "^2.2.1",
+    "ai": "^6.0.168",
+    "dotenv": "^17.4.2",
+    "openai": "^6.34.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,8 @@
+Timestamp: 2026-04-24T21:45:06.365Z
+Prompt: "Say hello"
+
+=== OpenAI Agent (openai/gpt-4o) ===
+Hello! How can I assist you today?
+
+=== Anthropic Agent (anthropic/claude-3-5-sonnet-20240620) ===
+Hello! It's nice to meet you. How are you doing today?
