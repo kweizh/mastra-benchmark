@@ -15,8 +15,8 @@ import { weatherTool } from './index.ts';
 
 async function run() {
     try {
-        const result = await weatherTool.execute({ 
-            inputData: { location: "London" } 
+        const result = await weatherTool.execute({
+            location: "London"
         });
         console.log(JSON.stringify(result));
     } catch (err) {

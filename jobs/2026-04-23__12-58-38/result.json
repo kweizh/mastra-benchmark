@@ -12,16 +12,15 @@
                 "n_errors": 2,
                 "metrics": [
                     {
-                        "mean": 0.6153846153846154
+                        "mean": 0.6923076923076923
                     }
                 ],
                 "reward_stats": {
                     "reward": {
                         "0.0": [
                             "task_30__oLE7YkJ",
-                            "task_38__KKGw89R",
+                            "task_38__veE2vRu",
                             "task_23__foXfmvz",
-                            "task_35__UiCLUsw",
                             "task_26__82hNDuq"
                         ],
                         "1.0": [
@@ -32,7 +31,8 @@
                             "task_28__z5sAqTS",
                             "task_21__6fTEXiw",
                             "task_27__bcgvYr9",
-                            "task_29__wTNyjM9"
+                            "task_29__wTNyjM9",
+                            "task_35__5fzZFQn"
                         ]
                     }
                 },

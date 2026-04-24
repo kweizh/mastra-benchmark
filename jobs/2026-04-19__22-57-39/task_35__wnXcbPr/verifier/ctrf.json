@@ -1,0 +1,38 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777067823.76693,
+            "stop": 1777067824.0768256
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_index_file_exists",
+                "status": "passed",
+                "duration": 0.00025182904209941626,
+                "start": 1777067823.769998,
+                "stop": 1777067823.7703936,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_weather_tool_execution",
+                "status": "passed",
+                "duration": 0.3059211320069153,
+                "start": 1777067823.770462,
+                "stop": 1777067824.0766258,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}
