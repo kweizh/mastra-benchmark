@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[42654,["/mastra-benchmark/_next/static/chunks/babff0e7418ab052.js","/mastra-benchmark/_next/static/chunks/3ecbb78a8ff87549.js","/mastra-benchmark/_next/static/chunks/c0abab8b687eb150.js","/mastra-benchmark/_next/static/chunks/be08138953094657.js"],"TasksPageClient"]
-13:I[75049,["/mastra-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/mastra-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
-14:"$Sreact.suspense"
-3:T4e9,# Mastra Calculator Agent
+2:"$Sreact.suspense"
+3:I[42654,["/mastra-benchmark/_next/static/chunks/babff0e7418ab052.js","/mastra-benchmark/_next/static/chunks/3ecbb78a8ff87549.js","/mastra-benchmark/_next/static/chunks/06b95aa6f22058d9.js","/mastra-benchmark/_next/static/chunks/ab9c434cfac62bb4.js"],"TasksPageClient"]
+14:I[75049,["/mastra-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/mastra-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+4:T4e9,# Mastra Calculator Agent
 
 ## Background
 Mastra provides a unified ecosystem for building AI agents with tools. In this task, you will create a simple Calculator Tool and attach it to an agent.
@@ -22,7 +22,7 @@ Mastra provides a unified ecosystem for building AI agents with tools. In this t
 - Project path: `/home/user/calculator-agent`
 - Log file: `/home/user/calculator-agent/output.log`
 - You must use `createTool` and `Agent` from Mastra.
-- Set the `OPENAI_API_KEY` environment variable for the agent to work.4:T423,# Setup Mastra with LibSQL Storage
+- Set the `OPENAI_API_KEY` environment variable for the agent to work.5:T423,# Setup Mastra with LibSQL Storage
 
 ## Background
 Mastra is an AI agent framework. You need to initialize a basic Mastra instance equipped with an agent and configure it to use LibSQL for memory storage.
@@ -45,7 +45,7 @@ Mastra is an AI agent framework. You need to initialize a basic Mastra instance 
 - The database file must be created at `/home/user/myproject/mastra.db`.
 
 ## Integrations
-- None5:T640,# Mastra RAG Pipeline
+- None6:T640,# Mastra RAG Pipeline
 
 ## Background
 Build a Retrieval-Augmented Generation (RAG) pipeline using the Mastra framework. You will need to parse a provided markdown file, chunk the text, generate embeddings, and store them in a vector database to answer questions based on the document.
@@ -75,7 +75,7 @@ Build a Retrieval-Augmented Generation (RAG) pipeline using the Mastra framework
 - You must use Mastra's RAG capabilities.
 
 ## Integrations
-- OpenAI (for embeddings and LLM)6:T86f,# Mastra Conditional Workflow
+- OpenAI (for embeddings and LLM)7:T86f,# Mastra Conditional Workflow
 
 ## Background
 Mastra is a high-performance TypeScript AI agent framework. Workflows let you define complex sequences of tasks using clear, structured steps rather than relying on the reasoning of a single agent. The `.branch()` method creates conditional branches between workflow steps, allowing for different paths to be taken based on the result of a previous step.
@@ -98,7 +98,7 @@ Mastra is a high-performance TypeScript AI agent framework. Workflows let you de
 ## Constraints
 - Project path: `/home/user/project`
 - Log file: `/home/user/project/output.json`
-- Start command: `npx tsx src/index.ts`7:T699,# Mastra Human-in-the-Loop Workflow
+- Start command: `npx tsx src/index.ts`8:T699,# Mastra Human-in-the-Loop Workflow
 
 ## Background
 Mastra workflows can be paused at any step to wait for external input or approval (Human-in-the-loop). When a workflow is suspended, its current execution state is saved. You can later resume the workflow run, providing the required `resumeData`.
@@ -126,7 +126,7 @@ Create a Node.js project using Mastra that implements a Human-in-the-loop workfl
 ## Constraints
 - Project path: `/home/user/mastra-app`
 - Output file: `/home/user/mastra-app/output.json`
-- Start command: `npx tsx run.ts`8:T5d3,# Configure a Supervisor Agent to Coordinate Sub-Agents in Mastra
+- Start command: `npx tsx run.ts`9:T5d3,# Configure a Supervisor Agent to Coordinate Sub-Agents in Mastra
 
 ## Background
 Mastra is a TypeScript AI agent framework. You need to configure a Supervisor agent that coordinates two sub-agents: a 'Coder' and a 'Reviewer', using shared memory.
@@ -148,7 +148,7 @@ Mastra is a TypeScript AI agent framework. You need to configure a Supervisor ag
 - Project path: `/home/user/project`
 - Log file: `/home/user/project/output.txt`
 - The models used should be `openai/gpt-4o-mini` (or similar, assuming `OPENAI_API_KEY` is provided).
-- Use `tsx` or `ts-node` to run the TypeScript file.9:T661,# Custom MCP Server for Local Filesystem with Mastra
+- Use `tsx` or `ts-node` to run the TypeScript file.a:T661,# Custom MCP Server for Local Filesystem with Mastra
 
 ## Background
 Mastra supports connecting AI agents to external tools via the Model Context Protocol (MCP). You can use `MCPClient` from `@mastra/mcp` to connect to any MCP server and expose its tools to a Mastra `Agent`.
@@ -173,7 +173,7 @@ Mastra supports connecting AI agents to external tools via the Model Context Pro
 - Use `OPENAI_API_KEY` from the environment.
 
 ## Integrations
-- OpenAIa:T759,# Mastra AI Recruiter Workflow
+- OpenAIb:T759,# Mastra AI Recruiter Workflow
 
 ## Background
 You need to build an AI recruiter workflow using Mastra. The workflow will parse a candidate's resume, determine if they are technical or non-technical, and generate a specific interview question based on their profile.
@@ -200,7 +200,7 @@ You need to build an AI recruiter workflow using Mastra. The workflow will parse
 - Ensure `OPENAI_API_KEY` is available in the environment.
 
 ## Integrations
-- OpenAIb:T41b,# Mastra Chef Agent
+- OpenAIc:T41b,# Mastra Chef Agent
 
 ## Background
 Create a simple Mastra agent named 'chef-agent' that acts as a professional French chef.
@@ -227,7 +227,7 @@ Create a simple Mastra agent named 'chef-agent' that acts as a professional Fren
 - You must use `openai/gpt-4o-mini` as the model.
 
 ## Integrations
-- OpenAIc:T829,# Mastra Research Assistant (RAG)
+- OpenAId:T829,# Mastra Research Assistant (RAG)
 
 ## Background
 You need to build an AI research assistant using Mastra's RAG capabilities. The assistant will process a local markdown file, generate embeddings, store them in a local libSQL database, and use a vector query tool to answer questions based on the document.
@@ -252,7 +252,7 @@ You need to build an AI research assistant using Mastra's RAG capabilities. The 
 - Project path: `/home/user/research-assistant`
 - Log file: `/home/user/answer.txt`
 - The database must be created at `/home/user/research-assistant/vector.db`.
-- Ensure you use `openai/text-embedding-3-small` for embeddings and `openai/gpt-4o-mini` for the agent.d:T67a,# Create a Weather Tool with Mastra
+- Ensure you use `openai/text-embedding-3-small` for embeddings and `openai/gpt-4o-mini` for the agent.e:T67a,# Create a Weather Tool with Mastra
 
 ## Background
 Mastra is a TypeScript AI agent framework. Tools are reusable functions that agents can call to interact with external systems or perform specific tasks. In this task, you will create a custom Mastra tool that fetches weather data.
@@ -290,7 +290,7 @@ Mastra is a TypeScript AI agent framework. Tools are reusable functions that age
 ## Constraints
 - Project path: `/home/user/project`
 - The file must be named `index.ts`.
-- The exported tool must be named `weatherTool`.e:T608,# Multi-Model Mastra Agents
+- The exported tool must be named `weatherTool`.f:T608,# Multi-Model Mastra Agents
 
 ## Background
 Mastra allows creating agents that use different LLM providers via the Vercel AI SDK. This task requires setting up a Mastra instance with two agents, one using OpenAI and the other using Anthropic.
@@ -318,7 +318,7 @@ Mastra allows creating agents that use different LLM providers via the Vercel AI
 
 ## Integrations
 - OpenAI
-- Anthropicf:T5be,# Mastra Workflow Error Handling and Retries
+- Anthropic10:T5be,# Mastra Workflow Error Handling and Retries
 
 ## Background
 Mastra workflows support error handling and retries for transient failures. In this task, you will create a workflow that retries a failing step and handles the final result.
@@ -342,8 +342,8 @@ Mastra workflows support error handling and retries for transient failures. In t
 ## Constraints
 - Project path: `/home/user/project`
 - Log file: `/home/user/project/result.json`
-- Use `@mastra/core` version `0.1.34` or latest.0:{"buildId":"70VCMpOlo3OYarO5vqfyj","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$L2",null,{"tasksData":[{"taskName":"task_21","instruction":"$3","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_21__w3AyjPd","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":325.006,"latency_breakdown":{"env_setup":12.349,"agent_setup":29.198,"agent_exec":246.099,"verifier":22.219},"taskName":"task_21","jobId":"w3AyjPd","exec_duration":246.099}]},{"taskName":"task_22","instruction":"$4","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_22__TEVxqQq","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":451.46,"latency_breakdown":{"env_setup":12.39,"agent_setup":28.196,"agent_exec":377.312,"verifier":14.926},"taskName":"task_22","jobId":"TEVxqQq","exec_duration":377.312}]},{"taskName":"task_23","instruction":"$5","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_23__XWm9cK3","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":357.524,"latency_breakdown":{"env_setup":12.048,"agent_setup":44.282,"agent_exec":270.299,"verifier":13.791},"taskName":"task_23","jobId":"XWm9cK3","exec_duration":270.299}]},{"taskName":"task_24","instruction":"$6","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_24__WKkobnB","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":315.297,"latency_breakdown":{"env_setup":12.471,"agent_setup":20.445,"agent_exec":258.183,"verifier":8.729},"taskName":"task_24","jobId":"WKkobnB","exec_duration":258.183}]},{"taskName":"task_25","instruction":"$7","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_25__MpAVoC6","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":518.58,"latency_breakdown":{"env_setup":12.081,"agent_setup":20.805,"agent_exec":462.699,"verifier":8.382},"taskName":"task_25","jobId":"MpAVoC6","exec_duration":462.699}]},{"taskName":"task_26","instruction":"$8","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_26__YktJhfv","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":440.823,"latency_breakdown":{"env_setup":3.742,"agent_setup":48.115,"agent_exec":360.102,"verifier":8.238},"taskName":"task_26","jobId":"YktJhfv","exec_duration":360.102}]},{"taskName":"task_27","instruction":"$9","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_27__ndot4S3","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":433.291,"latency_breakdown":{"env_setup":4.109,"agent_setup":22.341,"agent_exec":381.342,"verifier":9.492},"taskName":"task_27","jobId":"ndot4S3","exec_duration":381.342}]},{"taskName":"task_28","instruction":"$a","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_28__f8v6suz","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":650.463,"latency_breakdown":{"env_setup":4.786,"agent_setup":20.295,"agent_exec":600.111,"verifier":8.576},"taskName":"task_28","jobId":"f8v6suz","exec_duration":600.111}]},{"taskName":"task_29","instruction":"$b","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_29__Pr4sANN","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":242.977,"latency_breakdown":{"env_setup":8.736,"agent_setup":77.733,"agent_exec":120.192,"verifier":21.811},"taskName":"task_29","jobId":"Pr4sANN","exec_duration":120.192}]},{"taskName":"task_30","instruction":"$c","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_30__FHs9jZC","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":337.006,"latency_breakdown":{"env_setup":5.704,"agent_setup":16.558,"agent_exec":291.207,"verifier":7.8},"taskName":"task_30","jobId":"FHs9jZC","exec_duration":291.207}]},{"taskName":"task_35","instruction":"$d","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_35__j6snSjx","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":148.855,"latency_breakdown":{"env_setup":3.945,"agent_setup":19.221,"agent_exec":80.198,"verifier":9.202},"taskName":"task_35","jobId":"j6snSjx","exec_duration":80.198}]},{"taskName":"task_38","instruction":"$e","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_38__npEamPS","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":222.826,"latency_breakdown":{"env_setup":5.69,"agent_setup":27.793,"agent_exec":158.478,"verifier":14.643},"taskName":"task_38","jobId":"npEamPS","exec_duration":158.478}]},{"taskName":"task_39","instruction":"$f","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_39__wR6Reap","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":223.803,"latency_breakdown":{"env_setup":8.628,"agent_setup":27.335,"agent_exec":161.074,"verifier":8.389},"taskName":"task_39","jobId":"wR6Reap","exec_duration":161.074}]}]}]]}],["$L10","$L11"],"$L12"]}],"loading":null,"isPartial":false}
-10:["$","script","script-0",{"src":"/mastra-benchmark/_next/static/chunks/c0abab8b687eb150.js","async":true}]
-11:["$","script","script-1",{"src":"/mastra-benchmark/_next/static/chunks/be08138953094657.js","async":true}]
-12:["$","$L13",null,{"children":["$","$14",null,{"name":"Next.MetadataOutlet","children":"$@15"}]}]
+- Use `@mastra/core` version `0.1.34` or latest.0:{"buildId":"zmnSjKDSP_3_hLALwW0Xd","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$2",null,{"fallback":["$","div",null,{"className":"container mx-auto py-8 text-center","children":"Loading tasks..."}],"children":["$","$L3",null,{"tasksData":[{"taskName":"task_21","instruction":"$4","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_21__w3AyjPd","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":325.006,"latency_breakdown":{"env_setup":12.349,"agent_setup":29.198,"agent_exec":246.099,"verifier":22.219},"taskName":"task_21","jobId":"w3AyjPd","exec_duration":246.099}]},{"taskName":"task_22","instruction":"$5","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_22__TEVxqQq","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":451.46,"latency_breakdown":{"env_setup":12.39,"agent_setup":28.196,"agent_exec":377.312,"verifier":14.926},"taskName":"task_22","jobId":"TEVxqQq","exec_duration":377.312}]},{"taskName":"task_23","instruction":"$6","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_23__XWm9cK3","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":357.524,"latency_breakdown":{"env_setup":12.048,"agent_setup":44.282,"agent_exec":270.299,"verifier":13.791},"taskName":"task_23","jobId":"XWm9cK3","exec_duration":270.299}]},{"taskName":"task_24","instruction":"$7","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_24__WKkobnB","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":315.297,"latency_breakdown":{"env_setup":12.471,"agent_setup":20.445,"agent_exec":258.183,"verifier":8.729},"taskName":"task_24","jobId":"WKkobnB","exec_duration":258.183}]},{"taskName":"task_25","instruction":"$8","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_25__MpAVoC6","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":518.58,"latency_breakdown":{"env_setup":12.081,"agent_setup":20.805,"agent_exec":462.699,"verifier":8.382},"taskName":"task_25","jobId":"MpAVoC6","exec_duration":462.699}]},{"taskName":"task_26","instruction":"$9","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_26__YktJhfv","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":440.823,"latency_breakdown":{"env_setup":3.742,"agent_setup":48.115,"agent_exec":360.102,"verifier":8.238},"taskName":"task_26","jobId":"YktJhfv","exec_duration":360.102}]},{"taskName":"task_27","instruction":"$a","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_27__ndot4S3","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":433.291,"latency_breakdown":{"env_setup":4.109,"agent_setup":22.341,"agent_exec":381.342,"verifier":9.492},"taskName":"task_27","jobId":"ndot4S3","exec_duration":381.342}]},{"taskName":"task_28","instruction":"$b","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_28__f8v6suz","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":650.463,"latency_breakdown":{"env_setup":4.786,"agent_setup":20.295,"agent_exec":600.111,"verifier":8.576},"taskName":"task_28","jobId":"f8v6suz","exec_duration":600.111}]},{"taskName":"task_29","instruction":"$c","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_29__Pr4sANN","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":242.977,"latency_breakdown":{"env_setup":8.736,"agent_setup":77.733,"agent_exec":120.192,"verifier":21.811},"taskName":"task_29","jobId":"Pr4sANN","exec_duration":120.192}]},{"taskName":"task_30","instruction":"$d","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_30__FHs9jZC","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":337.006,"latency_breakdown":{"env_setup":5.704,"agent_setup":16.558,"agent_exec":291.207,"verifier":7.8},"taskName":"task_30","jobId":"FHs9jZC","exec_duration":291.207}]},{"taskName":"task_35","instruction":"$e","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_35__j6snSjx","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":148.855,"latency_breakdown":{"env_setup":3.945,"agent_setup":19.221,"agent_exec":80.198,"verifier":9.202},"taskName":"task_35","jobId":"j6snSjx","exec_duration":80.198}]},{"taskName":"task_38","instruction":"$f","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_38__npEamPS","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":222.826,"latency_breakdown":{"env_setup":5.69,"agent_setup":27.793,"agent_exec":158.478,"verifier":14.643},"taskName":"task_38","jobId":"npEamPS","exec_duration":158.478}]},{"taskName":"task_39","instruction":"$10","trials":[{"job_name":"2026-04-19__22-57-39","trial_name":"task_39__wR6Reap","model":"gemini-3-flash","rawModel":"google/gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":223.803,"latency_breakdown":{"env_setup":8.628,"agent_setup":27.335,"agent_exec":161.074,"verifier":8.389},"taskName":"task_39","jobId":"wR6Reap","exec_duration":161.074}]}]}]}]]}],["$L11","$L12"],"$L13"]}],"loading":null,"isPartial":false}
+11:["$","script","script-0",{"src":"/mastra-benchmark/_next/static/chunks/06b95aa6f22058d9.js","async":true}]
+12:["$","script","script-1",{"src":"/mastra-benchmark/_next/static/chunks/ab9c434cfac62bb4.js","async":true}]
+13:["$","$L14",null,{"children":["$","$2",null,{"name":"Next.MetadataOutlet","children":"$@15"}]}]
 15:null
