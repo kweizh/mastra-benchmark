@@ -1,0 +1,38 @@
+=== RAG Pipeline Results ===
+
+Query: "What is the main topic of the document?"
+
+Retrieved 3 chunks:
+
+--- Chunk 1 ---
+ID: 979b5d30-9121-4087-8ea0-0738849d5a39
+Score: 0.2213
+Content: ## Challenges and Future Directions
+
+Despite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. The future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.
+Metadata: {"text":"## Challenges and Future Directions\n\nDespite its successes, machine learning faces several challenges including data quality issues, interpretability of models, ethical concerns about bias, and the need for large amounts of training data. The future of machine learning lies in developing more efficient algorithms, improving model interpretability, and addressing ethical considerations.","source":"data.md","chunkIndex":10}
+
+--- Chunk 2 ---
+ID: 850da05d-6e83-47d0-a906-e4e9b99cbf8c
+Score: 0.2031
+Content: ## Applications
+
+Machine learning has numerous real-world applications:
+- Healthcare: Disease diagnosis, drug discovery, personalized medicine
+- Finance: Fraud detection, algorithmic trading, credit scoring
+- Transportation: Self-driving cars, route optimization
+- E-commerce: Recommendation systems, demand forecasting
+- Marketing: Customer segmentation, targeted advertising
+
+## Challenges and Future Directions
+Metadata: {"text":"## Applications\n\nMachine learning has numerous real-world applications:\n- Healthcare: Disease diagnosis, drug discovery, personalized medicine\n- Finance: Fraud detection, algorithmic trading, credit scoring\n- Transportation: Self-driving cars, route optimization\n- E-commerce: Recommendation systems, demand forecasting\n- Marketing: Customer segmentation, targeted advertising\n\n## Challenges and Future Directions","source":"data.md","chunkIndex":9}
+
+--- Chunk 3 ---
+ID: 797d626b-b0e8-43e2-a9d0-9a79ddffff1e
+Score: 0.2018
+Content: ## Key Concepts
+
+### Training and Testing
+In machine learning, datasets are typically split into training and testing sets. The training set is used to train the model, while the testing set is used to evaluate its performance on unseen data. This helps prevent overfitting, where a model performs well on training data but poorly on new data.
+Metadata: {"text":"## Key Concepts\n\n### Training and Testing\nIn machine learning, datasets are typically split into training and testing sets. The training set is used to train the model, while the testing set is used to evaluate its performance on unseen data. This helps prevent overfitting, where a model performs well on training data but poorly on new data.","source":"data.md","chunkIndex":4}
+

@@ -1,0 +1,96 @@
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 3ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 4 items
+
+tests/test_final_state.py .FFF                                           [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_index_file_contains_models ________________________
+
+    def test_index_file_contains_models():
+        # Check if either index.ts or index.js exists
+        target_file = None
+        if os.path.isfile(INDEX_FILE):
+            target_file = INDEX_FILE
+        elif os.path.isfile(INDEX_JS_FILE):
+            target_file = INDEX_JS_FILE
+    
+        assert target_file is not None, "Neither index.ts nor index.js found in the project directory."
+    
+        with open(target_file, "r") as f:
+            content = f.read()
+    
+>       assert "openai/gpt-4o" in content, "Model 'openai/gpt-4o' not found in the script."
+E       AssertionError: Model 'openai/gpt-4o' not found in the script.
+E       assert 'openai/gpt-4o' in "import 'dotenv/config';\nimport { Mastra } from '@mastra/core';\nimport { Agent } from '@mastra/core/agent';\nimport ...logPath}`);\n}\n\nmain().catch((error) => {\n  console.error('Error running agents:', error);\n  process.exit(1);\n});"
+
+tests/test_final_state.py:26: AssertionError
+____________________________ test_script_execution _____________________________
+
+    def test_script_execution():
+        target_file = INDEX_FILE if os.path.isfile(INDEX_FILE) else INDEX_JS_FILE
+    
+        # Run the script using tsx or node
+        if target_file.endswith(".ts"):
+            cmd = ["npx", "tsx", target_file]
+        else:
+            cmd = ["node", target_file]
+    
+        result = subprocess.run(cmd, cwd=PROJECT_DIR, capture_output=True, text=True)
+>       assert result.returncode == 0, f"Script execution failed: {result.stderr}"
+E       AssertionError: Script execution failed: /home/user/mastra-multi-model/index.ts:43
+E         const mastra = createMastra({
+E                        ^
+E         
+E         TypeError: (0 , import_core2.createMastra) is not a function
+E             at fs (/home/user/mastra-multi-model/index.ts:43:16)
+E             at Object.<anonymous> (/home/user/mastra-multi-model/index.ts:85:2)
+E             at Module._compile (node:internal/modules/cjs/loader:1812:14)
+E             at Object.transformer (/home/user/mastra-multi-model/node_modules/tsx/dist/register-D46fvsV_.cjs:3:1104)
+E             at Module.load (node:internal/modules/cjs/loader:1533:32)
+E             at Module._load (node:internal/modules/cjs/loader:1335:12)
+E             at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+E             at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:328:3)
+E             at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:233:7)
+E             at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+E         
+E         Node.js v24.14.1
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['npx', 'tsx', '/home/user/mastra-multi-model/index.ts'], returncode=1, stdout='', stderr='/home...ules/esm/translators:233:7)\n    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)\n\nNode.js v24.14.1\n').returncode
+
+tests/test_final_state.py:39: AssertionError
+________________ test_output_log_exists_and_contains_responses _________________
+
+    def test_output_log_exists_and_contains_responses():
+>       assert os.path.isfile(LOG_FILE), f"Log file {LOG_FILE} does not exist."
+E       AssertionError: Log file /home/user/mastra-multi-model/output.log does not exist.
+E       assert False
+E        +  where False = <function isfile at 0xf86aeae10220>('/home/user/mastra-multi-model/output.log')
+E        +    where <function isfile at 0xf86aeae10220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:42: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_project_directory_exists
+FAILED tests/test_final_state.py::test_index_file_contains_models - Assertion...
+FAILED tests/test_final_state.py::test_script_execution - AssertionError: Scr...
+FAILED tests/test_final_state.py::test_output_log_exists_and_contains_responses
+========================= 3 failed, 1 passed in 0.60s ==========================

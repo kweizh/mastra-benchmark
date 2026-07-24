@@ -1,0 +1,56 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 0,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776896224.0961702,
+            "stop": 1776896224.8127654
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_execution",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.7048509100059164,
+                "start": 1776896224.1005955,
+                "stop": 1776896224.8102944,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_execution():\n        \"\"\"Priority 1: Run the workflow script and check exit code.\"\"\"\n        result = subprocess.run(\n            [\"npx\", \"tsx\", \"index.ts\"],\n            capture_output=True, text=True, cwd=PROJECT_DIR\n        )\n>       assert result.returncode == 0, \\\n            f\"Workflow execution failed: {result.stderr}\"\nE       AssertionError: Workflow execution failed: /home/user/project/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:12048\nE             inputData,\nE             ^\nE         \nE         TypeError: Cannot destructure property 'inputData' of 'undefined' as it is undefined.\nE             at Run._start (/home/user/project/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:12048:5)\nE             at Run.start (/home/user/project/node_modules/@mastra/core/dist/chunk-PBGNXXU5.cjs:12113:17)\nE             at main (/home/user/project/index.ts:61:28)\nE         \nE         Node.js v24.14.1\nE         \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['npx', 'tsx', 'index.ts'], returncode=1, stdout='', stderr=\"/home/user/project/node_modules/@ma...@mastra/core/dist/chunk-PBGNXXU5.cjs:12113:17)\\n    at main (/home/user/project/index.ts:61:28)\\n\\nNode.js v24.14.1\\n\").returncode\n\ntests/test_final_state.py:14: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_attempts_file_content",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003770399998757057,
+                "start": 1776896224.8104026,
+                "stop": 1776896224.8115916,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_attempts_file_content():\n        \"\"\"Priority 3: Check the attempts file content.\"\"\"\n        attempts_file = os.path.join(PROJECT_DIR, \"attempts.txt\")\n        assert os.path.isfile(attempts_file), f\"Attempts file {attempts_file} does not exist.\"\n        with open(attempts_file, \"r\") as f:\n            content = f.read().strip()\n>       assert content == \"3\", f\"Expected attempts.txt to contain '3', got: {content}\"\nE       AssertionError: Expected attempts.txt to contain '3', got: 0\nE       assert '0' == '3'\nE         \nE         - 3\nE         + 0\n\ntests/test_final_state.py:23: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_result_file_content",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00030940099532017484,
+                "start": 1776896224.8116617,
+                "stop": 1776896224.8126395,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_result_file_content():\n        \"\"\"Priority 3: Check the result file content.\"\"\"\n        result_file = os.path.join(PROJECT_DIR, \"result.json\")\n>       assert os.path.isfile(result_file), f\"Result file {result_file} does not exist.\"\nE       AssertionError: Result file /home/user/project/result.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0xe845adff0220>('/home/user/project/result.json')\nE        +    where <function isfile at 0xe845adff0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:28: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

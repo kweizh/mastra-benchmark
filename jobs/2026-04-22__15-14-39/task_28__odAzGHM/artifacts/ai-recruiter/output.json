@@ -1,0 +1,14 @@
+[
+  {
+    "candidateName": "Alice",
+    "isTechnical": true,
+    "specialty": "Software Engineering with expertise in React and Node.js",
+    "question": "Can you explain the difference between server-side rendering and client-side rendering in a React application, and discuss how you would implement server-side rendering using Node.js?"
+  },
+  {
+    "candidateName": "Bob",
+    "isTechnical": false,
+    "specialty": "Marketing Manager with expertise in SEO and content strategy.",
+    "question": "What aspects of the Marketing Manager role excite you the most, and how do your expertise in SEO and content strategy align with our company's goals?"
+  }
+]

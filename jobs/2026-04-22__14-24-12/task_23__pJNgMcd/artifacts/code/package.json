@@ -1,0 +1,21 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsx index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.53",
+    "@mastra/core": "^1.26.0",
+    "@mastra/rag": "^2.2.1",
+    "@mastra/vector-libsql": "^0.1.0-alpha.24",
+    "ai": "^6.0.168",
+    "dotenv": "^17.4.2"
+  }
+}

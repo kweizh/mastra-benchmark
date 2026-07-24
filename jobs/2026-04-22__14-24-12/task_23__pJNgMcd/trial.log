@@ -1,0 +1,95 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo task_23__pJNgMcd > /logs/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.5": {
+          "name": "kimi-K2.5"
+        },
+        "Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+          "name": "qwen3-coder-480b"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model anthropic/claude-4-6-sonnet --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Mastra RAG Pipeline
+
+## Background
+Build a Retrieval-Augmented Generation (RAG) pipeline using the Mastra framework. You will need to parse a provided markdown file, chunk the text, generate embeddings, and store them in a vector database to answer questions based on the document.
+
+## Requirements
+- Initialize a Mastra project in `/home/user/myproject`.
+- Install necessary dependencies (`@mastra/core`, `@mastra/rag`, etc.).
+- Create a script `index.ts` that:
+  1. Reads a markdown file `/home/user/myproject/data.md`.
+  2. Chunks the document using Mastra's RAG utilities.
+  3. Generates embeddings for the chunks using an OpenAI model (e.g., `text-embedding-3-small` or similar supported by Mastra).
+  4. Stores the embeddings in a local vector store (e.g., LibSQL or a simple in-memory store if supported, or PgLite).
+  5. Queries the vector store with a specific question: "What is the main topic of the document?"
+  6. Outputs the retrieved chunks or the final LLM answer to `/home/user/myproject/output.log`.
+
+## Implementation Guide
+1. Run `mkdir -p /home/user/myproject && cd /home/user/myproject`.
+2. Initialize a Node.js project: `npm init -y`.
+3. Install dependencies: `npm install @mastra/core @mastra/rag dotenv` and TypeScript types if needed.
+4. Write `index.ts` to implement the RAG pipeline.
+5. Execute the script using `npx tsx index.ts`.
+
+## Constraints
+- Project path: `/home/user/myproject`
+- Input file: `/home/user/myproject/data.md`
+- Log file: `/home/user/myproject/output.log`
+- You must use Mastra's RAG capabilities.
+
+## Integrations
+- OpenAI (for embeddings and LLM)
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured

@@ -1,0 +1,98 @@
+[
+  {
+    "status": "success",
+    "steps": {
+      "input": {
+        "resumeText": "Alice is a Software Engineer with 10 years of experience in React and Node.js."
+      },
+      "gather-candidate-info": {
+        "startedAt": 1776975389563,
+        "status": "success",
+        "output": {
+          "candidateName": "Alice",
+          "isTechnical": true,
+          "specialty": "Software Engineer"
+        },
+        "endedAt": 1776975391100
+      },
+      "ask-about-specialty": {
+        "payload": {
+          "candidateName": "Alice",
+          "isTechnical": true,
+          "specialty": "Software Engineer"
+        },
+        "startedAt": 1776975391101,
+        "status": "success",
+        "output": {
+          "candidateName": "Alice",
+          "isTechnical": true,
+          "specialty": "Software Engineer",
+          "question": "Can you explain the differences between synchronous and asynchronous programming in JavaScript, and provide an example of when you would use each approach?"
+        },
+        "endedAt": 1776975392196
+      }
+    },
+    "input": {
+      "resumeText": "Alice is a Software Engineer with 10 years of experience in React and Node.js."
+    },
+    "stepExecutionPath": [
+      "gather-candidate-info"
+    ],
+    "result": {
+      "ask-about-specialty": {
+        "candidateName": "Alice",
+        "isTechnical": true,
+        "specialty": "Software Engineer",
+        "question": "Can you explain the differences between synchronous and asynchronous programming in JavaScript, and provide an example of when you would use each approach?"
+      }
+    }
+  },
+  {
+    "status": "success",
+    "steps": {
+      "input": {
+        "resumeText": "Bob is a Marketing Manager with 5 years of experience in SEO and content strategy."
+      },
+      "gather-candidate-info": {
+        "startedAt": 1776975392197,
+        "status": "success",
+        "output": {
+          "candidateName": "Bob",
+          "isTechnical": false,
+          "specialty": "Marketing Manager"
+        },
+        "endedAt": 1776975393281
+      },
+      "ask-about-role": {
+        "payload": {
+          "candidateName": "Bob",
+          "isTechnical": false,
+          "specialty": "Marketing Manager"
+        },
+        "startedAt": 1776975393281,
+        "status": "success",
+        "output": {
+          "candidateName": "Bob",
+          "isTechnical": false,
+          "specialty": "Marketing Manager",
+          "question": "What aspects of this role excite you the most, and how do you see your experience as a Marketing Manager contributing to our team's success?"
+        },
+        "endedAt": 1776975394128
+      }
+    },
+    "input": {
+      "resumeText": "Bob is a Marketing Manager with 5 years of experience in SEO and content strategy."
+    },
+    "stepExecutionPath": [
+      "gather-candidate-info"
+    ],
+    "result": {
+      "ask-about-role": {
+        "candidateName": "Bob",
+        "isTechnical": false,
+        "specialty": "Marketing Manager",
+        "question": "What aspects of this role excite you the most, and how do you see your experience as a Marketing Manager contributing to our team's success?"
+      }
+    }
+  }
+]

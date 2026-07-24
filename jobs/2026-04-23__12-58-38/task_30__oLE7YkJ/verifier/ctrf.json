@@ -1,0 +1,59 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 3,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1776975123.6640763,
+            "stop": 1776975123.678749
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_dependencies_installed",
+                "status": "passed",
+                "duration": 0.0004694800009019673,
+                "start": 1776975123.6703103,
+                "stop": 1776975123.671038,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_vector_db_exists_and_valid",
+                "status": "passed",
+                "duration": 0.0007071169966366142,
+                "start": 1776975123.6711235,
+                "stop": 1776975123.6719673,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_ask_script_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0003844780003419146,
+                "start": 1776975123.6720345,
+                "stop": 1776975123.6779642,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_ask_script_exists():\n>       assert os.path.isfile(ASK_SCRIPT), f\"Script {ASK_SCRIPT} does not exist.\"\nE       AssertionError: Script /home/user/research-assistant/src/ask.ts does not exist.\nE       assert False\nE        +  where False = <function isfile at 0xf6eba71f0220>('/home/user/research-assistant/src/ask.ts')\nE        +    where <function isfile at 0xf6eba71f0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:38: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_answer_file_exists_and_contains_relevant_text",
+                "status": "passed",
+                "duration": 0.0003282240068074316,
+                "start": 1776975123.6780636,
+                "stop": 1776975123.6784964,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

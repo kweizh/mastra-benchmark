@@ -10,7 +10,7 @@ Mastra is a TypeScript AI agent framework. Tools are reusable functions that age
 - The tool must be created using `createTool` from `@mastra/core/tools`.
 - The tool's `id` must be `weather-tool`.
 - The `inputSchema` must use `zod` to require a `location` string.
-- The `execute` function must be an async function that takes an object containing `inputData` (which has `location`) and returns an object with a `weather` property containing the string `The weather in {location} is sunny.`.
+- The `execute` function must be an async function that receives the validated input directly (an object with `location`) and returns an object with a `weather` property containing the string `The weather in {location} is sunny.`.
 
 ## Implementation Guide
 1. Run `mkdir -p /home/user/project` and `cd /home/user/project`.
@@ -27,8 +27,8 @@ Mastra is a TypeScript AI agent framework. Tools are reusable functions that age
      inputSchema: z.object({
        location: z.string()
      }),
-     execute: async ({ inputData }) => {
-       return { weather: `The weather in ${inputData.location} is sunny.` };
+     execute: async ({ location }) => {
+       return { weather: `The weather in ${location} is sunny.` };
      }
    });
    ```

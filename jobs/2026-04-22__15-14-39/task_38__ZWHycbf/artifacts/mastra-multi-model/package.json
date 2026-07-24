@@ -1,0 +1,19 @@
+{
+  "name": "mastra-multi-model",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@mastra/core": "^1.28.0",
+    "@mastra/memory": "^1.17.1",
+    "dotenv": "^17.4.2",
+    "zod": "^3.25.76"
+  }
+}
